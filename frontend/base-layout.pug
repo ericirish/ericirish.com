@@ -1,0 +1,69 @@
+html.no-js(lang='en')
+  head
+    block title
+      title Foundation Pug Boilerplate
+    block meta
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=0')
+      meta(property='og:type', content='website')
+      meta(property='og:site_name', content='Foundation Pug Boilerplate')
+      meta(property='og:url', content='')
+    block description
+      meta(property='og:title', content='Foundation Pug Boilerplate')
+      meta(name='description', content='')
+    block ogImage
+      meta(property='og:image', content='')
+      meta(property='og:image:width', content='')
+      meta(property='og:image:height', content='')
+    block fonts
+     link(href='https://fonts.googleapis.com/css?family=Montserrat:300,400' rel='stylesheet')
+
+    block scripts
+    block resources
+      style
+        include app.css
+
+  body
+    header
+      .title
+        h1 Eric Irish | Photography
+      .details
+        a(href='https://instagram.com/ecirish') 
+          include ./instagram.svg
+          span ecirish
+        a(href='mailto:ecirish@gmail.com')
+          include ./email.svg
+          span ecirish@gmail.com
+        p Austin, TX
+        
+    block content
+    
+    footer
+      .details
+        a(href='https://instagram.com/ecirish') 
+            include ./instagram.svg
+            span ecirish
+        a(href='mailto:ecirish@gmail.com')
+          include ./email.svg
+          span ecirish@gmail.com
+        p Austin, TX
+    block foot
+      script.
+        images = document.getElementById('images');
+
+        var mouseWheelEvt = function (event) {
+          if (images.doScroll)
+            images.doScroll(event.wheelDelta>0?"left":"right");
+          else
+            images.scrollLeft -= event.wheelDelta;
+          return false;
+        }
+
+        images.addEventListener("mousewheel", mouseWheelEvt);
+
+        var divs = images.children;
+        var frag = document.createDocumentFragment();
+        while (divs.length) {
+          frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
+        }
+        images.appendChild(frag);

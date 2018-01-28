@@ -1,0 +1,138 @@
+body {
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  flex-direction: column;
+  margin: 0;
+  padding-bottom: 1rem;
+}
+
+@media screen and (orientation: portrait) {
+  body {
+    justify-content: center;
+  }
+}
+
+.container {
+  flex: 1 1 0px;
+  display: flex;
+}
+
+@media screen and (orientation: portrait) {
+  .container {
+    align-items: center;
+    flex: 0 0 auto;
+  }
+}
+
+.images {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.images::-webkit-scrollbar {
+  display: none;
+}
+
+img {
+  display: inline-block;
+  margin-right: 1vw;
+  max-height: 100%;
+  max-width: 90vw;
+}
+
+img:first-of-type {
+  margin-left: 5vw;
+}
+
+img:last-of-type {
+  margin-right: 5vw;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 300;
+  margin: 0;
+}
+
+@media screen and (max-width: 640px) {
+  h1 {
+    font-size: 20px;
+  }
+}
+
+footer .title,
+footer .details,
+header .title,
+header .details {
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width: 640px) {
+  footer .title,
+  footer .details,
+  header .title,
+  header .details {
+    flex: 1 1 auto;
+  }
+}
+
+footer .details,
+header .details {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a,
+header a {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  color: #000;
+  text-decoration: none;
+}
+
+footer a span,
+header a span {
+  margin-left: 5px;
+}
+
+footer p,
+header p {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  padding: 1rem 5vw;
+}
+
+@media screen and (orientation: portrait) {
+  header .title {
+    width: 100%;
+  }
+  header .details {
+    display: none;
+  }
+}
+
+footer {
+  padding: 1rem;
+}
+
+@media screen and (orientation: landscape) {
+  footer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  footer p {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=app.css.map */

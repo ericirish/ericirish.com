@@ -1,0 +1,12 @@
+extends ../base-layout.pug
+
+block title
+  title Eric Irish | Automotive Photographer
+
+block content
+  .container
+    .images#images
+      - var n = 1;
+      while n < 63
+        img(src='/images/Website-1080-' + n + '.jpg' srcset='/images/Website-2560-' + n + '.jpg 2560w, /images/Website-1920-' + n + '.jpg 1920w, /images/Website-1440-' + n++ + '.jpg 1440w')
+        

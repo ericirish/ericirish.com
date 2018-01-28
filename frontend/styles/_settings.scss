@@ -1,0 +1,11 @@
+// sass-lint:disable no-color-keywords empty-args
+
+@import './node_modules/foundation-sites/scss/util/util';
+
+$foundation-palette: (
+  primary: #9f237e,
+  secondary: #767676,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
+);
