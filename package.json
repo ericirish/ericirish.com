@@ -26,7 +26,7 @@
     "watch:css": "yarn watch:scss",
     "watch:webpack": "webpack --progress --colors --watch",
     "watch": "yarn build && concurrently -k -p \"[{name}]\" -n \"SERVER,PUG,SCSS,WEBPACK\" -c \"bgBlue.bold,bgMagenta.bold,bgGreen.bold,bgRed.bold\" \"yarn serve \" \"yarn watch:pug \" \"yarn watch:css \" \"yarn watch:webpack \"",
-    "prod": "yarn clean:site && yarn build:pug-prod && yarn build:webpack && yarn build:images && yarn minify"
+    "prod": "yarn clean:site && yarn build:pug-prod && yarn build:webpack && yarn build:images"
   },
   "repository": "",
   "author": "Eric Irish",
