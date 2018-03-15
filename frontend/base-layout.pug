@@ -48,7 +48,9 @@ html.no-js(lang='en')
           span ecirish@gmail.com
         p Austin, TX
     block foot
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/10.4.2/lazyload.min.js")
       script.
+        var myLazyLoad = new LazyLoad();
         images = document.getElementById('images');
 
         var mouseWheelEvt = function (event) {

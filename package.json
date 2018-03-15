@@ -58,6 +58,7 @@
     "chokidar": "^1.7.0",
     "chokidar-cli": "^1.2.0",
     "pug": "^2.0.0-rc.4",
-    "pug-cli": "^1.0.0-alpha6"
+    "pug-cli": "^1.0.0-alpha6",
+    "vanilla-lazyload": "^10.4.2"
   }
 }
