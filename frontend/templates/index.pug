@@ -6,7 +6,6 @@ block title
 block content
   .container
     .images#images
-      - var n = 1;
-      while n < 66
-        img(data-src='/images/Website-1080-' + n + '.jpg' data-srcset='/images/Website-2560-' + n + '.jpg 2560w, /images/Website-1920-' + n + '.jpg 1920w, /images/Website-1440-' + n++ + '.jpg 1440w')
-        
+      - var nums = Array.from({length: 66}, () => Math.floor(Math.random() * 66));
+      each val in nums
+        img(data-src='/images/Website-1080-' + val + '.jpg' data-srcset='/images/Website-2560-' + val + '.jpg 2560w, /images/Website-1920-' + val + '.jpg 1920w, /images/Website-1440-' + val + '.jpg 1440w')
