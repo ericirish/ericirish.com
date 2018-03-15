@@ -50,8 +50,10 @@ html.no-js(lang='en')
     block foot
       script(src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/10.4.2/lazyload.min.js")
       script.
-        var myLazyLoad = new LazyLoad();
         images = document.getElementById('images');
+        var myLazyLoad = new LazyLoad({
+            container: images
+        });
 
         var mouseWheelEvt = function (event) {
           if (images.doScroll)
