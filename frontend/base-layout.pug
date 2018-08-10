@@ -28,19 +28,19 @@ html.no-js(lang='en')
       .title
         h1 Eric Irish | Photography
       .details
-        a(href='https://instagram.com/ecirish') 
+        a(href='https://instagram.com/ecirish')
           include ./instagram.svg
           span ecirish
         a(href='mailto:ecirish@gmail.com')
           include ./email.svg
           span ecirish@gmail.com
         p Austin, TX
-        
+
     block content
-    
+
     footer
       .details
-        a(href='https://instagram.com/ecirish') 
+        a(href='https://instagram.com/ecirish')
             include ./instagram.svg
             span ecirish
         a(href='mailto:ecirish@gmail.com')
@@ -52,15 +52,16 @@ html.no-js(lang='en')
       script.
         images = document.getElementById('images');
         var myLazyLoad = new LazyLoad({
-            container: images
+          container: images,
+          threshold: 1000
         });
 
-        var mouseWheelEvt = function (event) {
-          if (images.doScroll)
-            images.doScroll(event.wheelDelta>0?"left":"right");
-          else
-            images.scrollLeft -= event.wheelDelta;
-          return false;
-        }
+        //- var mouseWheelEvt = function (event) {
+        //-   if (images.doScroll)
+        //-     images.doScroll(event.wheelDelta>0?"left":"right");
+        //-   else
+        //-     images.scrollLeft -= event.wheelDelta;
+        //-   return false;
+        //- }
 
-        images.addEventListener("mousewheel", mouseWheelEvt);
+        //- images.addEventListener("mousewheel", mouseWheelEvt);
