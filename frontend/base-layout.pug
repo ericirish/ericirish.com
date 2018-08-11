@@ -56,12 +56,12 @@ html.no-js(lang='en')
           threshold: 1000
         });
 
-        //- var mouseWheelEvt = function (event) {
-        //-   if (images.doScroll)
-        //-     images.doScroll(event.wheelDelta>0?"left":"right");
-        //-   else
-        //-     images.scrollLeft -= event.wheelDelta;
-        //-   return false;
-        //- }
+        var mouseWheelEvt = function (event) {
+          if (images.doScroll)
+            images.doScroll(event.wheelDelta>0?"left":"right");
+          else
+            images.scrollLeft -= event.wheelDelta;
+          return false;
+        }
 
-        //- images.addEventListener("mousewheel", mouseWheelEvt);
+        images.addEventListener("mousewheel", mouseWheelEvt);
