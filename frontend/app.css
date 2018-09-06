@@ -28,7 +28,9 @@ body {
   -webkit-overflow-scrolling: touch;
   overflow-x: scroll;
   overflow-y: hidden;
+  scroll-snap-type: x proximity;
   white-space: nowrap;
+  scroll-behavior: smooth;
 }
 
 .images::-webkit-scrollbar {
@@ -41,6 +43,7 @@ img {
   max-height: 100%;
   max-width: 90vw;
   min-width: 50%;
+  scroll-snap-align: center;
 }
 
 img:first-of-type {

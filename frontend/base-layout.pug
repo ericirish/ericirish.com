@@ -80,9 +80,13 @@ html.no-js(lang='en')
 
         var mouseWheelEvt = function (event) {
           if (images.doScroll)
-            images.doScroll(event.wheelDelta>0?"left":"right");
+            images.doScroll(event.wheelDelta>0?"pageLeft":"pageRight");
           else
-            images.scrollLeft -= event.wheelDelta;
+            if(event.wheelDelta > 0) {
+              images.scrollLeft -= (window.innerWidth / 2);
+            } else {
+              images.scrollLeft -= (-window.innerWidth / 2);
+            }
           return false;
         }
 
