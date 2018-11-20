@@ -70,24 +70,11 @@ html.no-js(lang='en')
           span ecirish@gmail.com
         p Austin, TX
     block foot
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/10.4.2/lazyload.min.js")
+      script(src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@10.19.0/dist/lazyload.min.js")
       script.
         images = document.getElementById('images');
         var myLazyLoad = new LazyLoad({
           container: images,
-          threshold: 1000
+          threshold: 1000,
+          to_webp: true
         });
-
-        var mouseWheelEvt = function (event) {
-          if (images.doScroll)
-            images.doScroll(event.wheelDelta>0?"pageLeft":"pageRight");
-          else
-            if(event.wheelDelta > 0) {
-              images.scrollLeft -= (window.innerWidth);
-            } else {
-              images.scrollLeft -= (-window.innerWidth);
-            }
-          return false;
-        }
-
-        images.addEventListener("mousewheel", mouseWheelEvt);
