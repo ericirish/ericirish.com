@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "browser-sync start --server \"dist\" --extensions \"html\" --serveStatic dist --logLevel \"silent\" --files dist --reload-delay 1000 --no-open --no-ghost-mode --no-notify --reload-debounce",
-    "clean:site": "rm -rf dist",
+    "clean:site": "rm -rf dist && mkdir dist",
     "sass:dev": "node-sass --output-style expanded --source-map=true frontend/styles/app.scss frontend/app.css",
     "sass:prod": "node-sass --output-style compressed --source-map=false frontend/styles/app.scss frontend/app.css",
     "sass:lint": "sass-lint --config .sass-lint.yml 'frontend/styles/**/*.scss'",

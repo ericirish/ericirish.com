@@ -7,7 +7,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin(
       [
-        {from: "./frontend/images/*.jpg",to: "../images/[name].webp"},
+        {from: "./frontend/images/*.jpg",to: "../../dist/images/[name].webp"},
       ]),
     new ImageminWebpackPlugin({
       disable: process.env.NODE_ENV !== 'production',
