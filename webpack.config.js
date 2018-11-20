@@ -7,7 +7,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin(
       [
-        {from: "./frontend/images/*.jpg",to: "./../images/[name].webp"},
+        {from: "./frontend/images/*.jpg",to: "./images/[name].webp"},
       ]),
     new ImageminWebpackPlugin({
       disable: process.env.NODE_ENV !== 'production',
@@ -22,7 +22,7 @@ module.exports = {
     base: './frontend/js/base.js',
   }
   , output: {
-    path: __dirname + '/dist/js'
+    path: __dirname + '/dist'
     , filename: '[name].bundle.js'
   }
 }
