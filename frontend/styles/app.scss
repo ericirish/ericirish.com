@@ -22,10 +22,12 @@ body {
 
 .images {
   -webkit-overflow-scrolling: touch;
+  cursor: grab;
   overflow-x: scroll;
   overflow-y: hidden;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  // Cannot yet support with drag-and-scroll
+  // scroll-behavior: smooth;
+  // scroll-snap-type: x mandatory;
   white-space: nowrap;
 
   &::-webkit-scrollbar {

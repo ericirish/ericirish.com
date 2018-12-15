@@ -26,10 +26,9 @@ body {
 
 .images {
   -webkit-overflow-scrolling: touch;
+  cursor: grab;
   overflow-x: scroll;
   overflow-y: hidden;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
   white-space: nowrap;
 }
 

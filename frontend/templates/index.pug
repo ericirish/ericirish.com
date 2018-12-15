@@ -5,7 +5,7 @@ block title
 
 block content
   .container
-    .images#images
+    .images.dragscroll#images
       - var nums = Array.from(new Array(70),(val,index)=>index+1);
       - nums.sort(function() {return .5 - Math.random();});
       each val in nums
