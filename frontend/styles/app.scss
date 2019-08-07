@@ -3,7 +3,6 @@ body {
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
-  padding-bottom: 1rem;
 
   @media screen and (orientation: portrait) {
     justify-content: center;
@@ -13,6 +12,8 @@ body {
 .container {
   display: flex;
   flex: 1 1 0px;
+  max-height: calc(100vh - 69px - 1rem);
+  margin-bottom: 1rem;
 
   @media screen and (orientation: portrait) {
     align-items: center;
