@@ -1,12 +1,74 @@
 extends ../base-layout.pug
 
-block title
-  title Eric Irish | Automotive Photographer
+block styles
+  style.
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      margin: 0;
+    }
+
+    .container {
+      scroll-snap-type: y mandatory;
+      width: 100%;
+      height: 100vh;
+      overflow-y: scroll;
+    }
+
+    .image {
+      display: block;
+      height: 100vh;
+      max-width: 90vw;
+      margin: 0 auto;
+      scroll-snap-align: center;
+      display: flex;
+    }
+
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 80%;
+      margin: auto 0;
+    }
+
+    .icons {
+      position: fixed;
+      bottom: 2.5vh;
+      width: 100%;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+    }
+
+    .icons a {
+      border-radius: 50%;
+      background-color: white;
+      width: 4vh;
+      height: 4vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
 
 block content
   .container
-    .images.dragscroll#images
-      - var nums = Array.from(new Array(92),(val,index)=>index+1);
-      - nums.sort(function() {return .5 - Math.random();});
-      each val in nums
-        img(data-src='/images/Website-1080-' + val + '.jpg' alt='image ' + val data-srcset='/images/Website-2560-' + val + '.jpg 2560w, /images/Website-1920-' + val + '.jpg 1920w, /images/Website-1440-' + val + '.jpg 1440w')
+    .icons
+      a(href='https://instagram.com/ecirish')
+        include ../instagram.svg
+    - var nums = Array.from(new Array(92),(val,index)=>index+1);
+    - nums.sort(function() {return .5 - Math.random();});
+    each val in nums
+      a.image
+        img(
+          lazy
+          src='/images/Website-1080-' + val + '.jpg' alt='image ' + val
+          srcset='/images/Website-2560-' + val + '.jpg 2560w, /images/Website-1920-' + val + '.jpg 1920w, /images/Website-1440-' + val + '.jpg 1440w'
+        )

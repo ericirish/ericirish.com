@@ -11,11 +11,11 @@
     "build:images": "cp -p -a frontend/images/. dist/images",
     "build:pug": "pug --out dist --pretty -b frontend frontend",
     "build:pug-prod": "pug --out dist --pretty -b frontend/templates frontend/templates",
-    "build": "yarn clean:site && yarn build:cssdev && yarn build:pug && yarn build:images ",
+    "build": "yarn clean:site && yarn build:pug && yarn build:images ",
     "lint": "yarn sass:lint && yarn pug:lintyarn",
     "minify": "html-minifier --collapse-boolean-attributes --collapse-whitespace  --html5 --remove-attribute-quotes --remove-comments  --remove-empty-attributes --remove-optional-tags --remove-script-type-attributes  --remove-style-link-type-attributes --remove-tag-whitespace  --sort-attributes --sort-class-name --trim-custom-fragments  --use-short-doctype --minify-js -o dist/index.html dist/index.html",
     "watch:pug": "pug --out dist --pretty --watch -b frontend/templates frontend/templates",
-    "watch": "yarn build && concurrently -k -p \"[{name}]\" -n \"SERVER,PUG,SCSS,WEBPACK\" -c \"bgBlue.bold,bgMagenta.bold,bgGreen.bold,bgRed.bold\" \"yarn serve \" \"yarn watch:pug \" \"yarn watch:css \" \"yarn watch:webpack \"",
+    "watch": "yarn build && concurrently -k -p \"[{name}]\" -n \"SERVER,PUG\" -c \"bgBlue.bold,bgMagenta.bold\" \"yarn serve \" \"yarn watch:pug \"",
     "prod": "yarn clean:site && yarn build:images && yarn build:pug-prod"
   },
   "repository": "",
