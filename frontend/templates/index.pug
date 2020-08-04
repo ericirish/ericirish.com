@@ -68,7 +68,7 @@ block content
     each val in nums
       a.image
         img(
-          lazy
+          loading="lazy"
           src='/images/Website-1080-' + val + '.jpg' alt='image ' + val
           srcset='/images/Website-2560-' + val + '.jpg 2560w, /images/Website-1920-' + val + '.jpg 1920w, /images/Website-1440-' + val + '.jpg 1440w'
         )
