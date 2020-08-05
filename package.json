@@ -9,9 +9,9 @@
     "pug:lint": "pug-lint frontend",
     "build:images": "cp -p -a frontend/images/. dist/images",
     "build:pug": "pug --out dist --pretty -b frontend frontend",
-    "build:pug-prod": "pug --out dist --pretty -b frontend/templates frontend/templates",
+    "build:pug-prod": "pug --out dist --pretty -b --doctype html frontend/templates frontend/templates",
     "build": "yarn clean:site && yarn build:pug && yarn build:images ",
-    "watch:pug": "pug --out dist --pretty --watch -b frontend/templates frontend/templates",
+    "watch:pug": "pug --out dist --pretty --doctype html --watch -b frontend/templates frontend/templates",
     "watch": "yarn build && concurrently -k -p \"[{name}]\" -n \"SERVER,PUG\" -c \"bgBlue.bold,bgMagenta.bold\" \"yarn serve \" \"yarn watch:pug \"",
     "prod": "yarn clean:site && yarn build:images && yarn build:pug-prod"
   },

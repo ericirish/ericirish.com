@@ -59,14 +59,17 @@ block styles
 
 
 block content
-  .container
+  main.container
     .icons
-      a(href='https://instagram.com/ecirish')
+      a(
+        href='https://instagram.com/ecirish'
+        title="instagram"
+      )
         include ../instagram.svg
     - var nums = Array.from(new Array(92),(val,index)=>index+1);
     - nums.sort(function() {return .5 - Math.random();});
     each val in nums
-      a.image
+      .image
         img(
           loading="lazy"
           src='/images/Website-1080-' + val + '.jpg' alt='image ' + val
