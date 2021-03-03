@@ -28,7 +28,7 @@
   "dependencies": {
     "chokidar": "^3.0.2",
     "chokidar-cli": "^2.0.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-cli": "^1.0.0-alpha6"
   }
 }
