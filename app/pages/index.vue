@@ -6,26 +6,26 @@ const siteUrl = String(config.public.siteUrl).replace(/\/$/, '')
 
 useSeoMeta({
   title: 'Eric Irish — Yes, AI can do real work in your business. I’m the guy who actually builds it.',
-  description: 'Seventeen years building websites, startups, and companies. Now I put AI to work on quotes, bookings, follow-ups, and the questions people call you about — and tell you plainly where it won’t help. No website login required.',
+  description: 'I embed with how your business already runs and build invisible AI — the right information in front of the right person, no prompt. Seventeen years in startups and ops software. Plain talk on where it helps and where it doesn’t.',
   ogTitle: 'Yes, AI can do real work in your business. I’m the guy who actually builds it.',
-  ogDescription: 'Honest, hands-on AI for real businesses — built into the website and the systems behind it by one person with seventeen years of doing exactly that. Austin, TX.',
+  ogDescription: 'Hands-on AI transformation: embedded in your processes, not a chat bubble on your homepage. One person, seventeen years, Austin TX.',
   ogUrl: siteUrl,
   ogImage: `${siteUrl}/EricIrish.jpg`
 })
 
 const asked = [
-  'The login to your website',
+  'Months of “discovery” before anything changes',
   'To “optimize you for ChatGPT”',
-  'A chat bubble in the corner of your homepage',
+  'Software that only works if someone asks it a question',
   'A monthly report full of charts',
   'A year-long contract before anything gets built'
 ]
 
 const changes = [
-  'A website that answers the questions people call you about',
-  'Your prices, hours, and services written down somewhere a computer can read',
-  'The stuff you do by hand every day — quotes, bookings, follow-ups — turned into a system',
-  'AI plugged into that system, so it has real answers instead of guesses',
+  'Someone embedded long enough to learn how the week actually runs',
+  'The facts your people keep in their heads — written where the system can use them',
+  'The stuff you do by hand every day — quotes, bookings, follow-ups — turned into a flow',
+  'Invisible AI on that flow: the answer already on screen, nobody typing a prompt',
   'One person you can call who will tell you no'
 ]
 
@@ -39,29 +39,29 @@ const offers = [
   },
   {
     n: '02',
-    title: 'New website + the stuff behind it',
-    body: 'A website that does the job — and the systems it needs to do it: quoting, booking, inventory, whatever you’re doing by hand today. Built together, so the front door actually opens onto something.',
-    good: 'A website that looks fine and does nothing.',
-    ends: 'A site that’s live and hooked up to your business.'
+    title: 'Embed in how you operate',
+    body: 'I work inside your process — quoting, booking, dispatch, compliance rounds, whatever actually runs the week — and wire it so information shows up where people already are. Not a side project. Not a new tool they have to remember to open.',
+    good: 'Smart people repeating the same steps every morning.',
+    ends: 'The flow runs. The answer was already there.'
   },
   {
     n: '03',
-    title: 'AI on the work you already do',
-    body: 'The site can stay. The mess is the inbox, the spreadsheet, the way you actually work. I plug AI into those real answers — not a chat bubble on a page that can’t answer the question.',
-    good: 'A site that’s fine. An inbox that isn’t.',
-    ends: 'AI doing a real job. Not a bubble.'
+    title: 'Invisible AI on real work',
+    body: 'The inbox, the spreadsheet, the handoff between teams — that’s where the mess is. I plug AI into those moments so your people get what they need without interviewing a chatbot.',
+    good: 'You know what should be automatic. Nobody’s had time to build it.',
+    ends: 'Information delivered. No prompt.'
   },
   {
     n: '04',
     title: 'Keep me around',
     body: 'After the build, I stick around part-time. When the next snake-oil salesman calls — they usually say SEO or AI — I’ll tell you if they’re selling work or a bottle. When something should be automated, I build it. When it shouldn’t, I say so.',
-    good: 'After a rebuild, or a team with nobody technical.',
+    good: 'After a big operational push, or a team with nobody technical.',
     ends: 'It doesn’t. That’s the point.'
   }
 ]
 
 const thesisSold = [
-  'A chat bubble so customers can “ask the site”',
+  'A chat window so someone can “ask the system”',
   'A box where your staff has to prompt a robot for last week’s numbers',
   'A wrapper on your data that still needs a conversation',
   'A demo that looks smart until someone asks a real question'
@@ -75,14 +75,14 @@ const thesisRight = [
 ]
 
 const timeline = [
-  ['2009 — now', 'Building', 'Startups, companies, websites, the software behind them.'],
+  ['2009 — now', 'Building', 'Startups, companies, and the software that runs them.'],
   ['2015 — 2019', 'At an agency', 'Same job, more meetings.'],
   ['2019 — now', 'On my own', 'One person, no account manager. DoorCheck along the way.']
 ]
 
 const rules = [
-  'I won’t ask for the login to your website to “do AI.”',
-  'I won’t put a chat bubble on a site that can’t answer the question.',
+  'I start with the work that’s eating your week — not a deck about “AI strategy.”',
+  'I won’t make your team prompt a robot for numbers they already needed on screen.',
   'I won’t hand you a plan I can’t build myself.',
   'I won’t sell you SEO and call it AI. That’s snake oil.'
 ]
@@ -107,7 +107,7 @@ const rules = [
 
         <div class="hero-enter hero-enter-3 grid gap-10 md:items-end lg:col-span-7 lg:col-start-1 lg:row-start-3">
           <p class="lede max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
-            Not the SEO guy. I call those people snake-oil salesmen — they want your website login to “get you found by ChatGPT.” I’ve spent seventeen years building websites, startups, and companies. Now I put AI to work on the stuff you actually do: quotes, bookings, follow-ups, the questions people call you about all day. I’ll also tell you, plainly, where AI won’t help. That part’s free.
+            I embed with how you already work — not to sell you a prettier homepage. Snake-oil salesmen want buzzwords and chat bubbles; I build invisible AI that puts the answer in front of the right person before anyone has to ask. Seventeen years in startups and the systems behind them. I’ll tell you plainly where that earns its keep — and where it doesn’t.
           </p>
 
           <div class="flex flex-wrap gap-3">
@@ -137,7 +137,7 @@ const rules = [
             <dd class="text-ink">1</dd>
           </div>
           <div class="px-6 py-5 md:px-10">
-            <dt class="eyebrow mb-2">Website logins I need from you</dt>
+            <dt class="eyebrow mb-2">Strategy decks before code</dt>
             <dd class="text-ink">0</dd>
           </div>
         </dl>
@@ -175,7 +175,7 @@ const rules = [
         </div>
 
         <p v-reveal class="display mx-auto mt-24 max-w-4xl text-center text-2xl text-ink md:text-4xl">
-          AI can’t tell your customers anything your business hasn’t written down. <em class="text-ink-muted">If they can’t explain what they’re going to change about how you actually operate, they’re selling snake oil. SEO people have been doing it for years. Now they just say AI.</em>
+          AI can’t invent a process you never had. <em class="text-ink-muted">If they can’t name the step in your week they’d change — the handoff, the check, the quote — they’re selling snake oil. SEO people have been doing it for years. Now they just say AI.</em>
         </p>
       </div>
     </section>
@@ -188,7 +188,7 @@ const rules = [
           Good AI is invisible. You shouldn’t have to chat with it.
         </h2>
         <p v-reveal class="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
-          The snake-oil move is a bubble in the corner. “Talk to your business.” That’s asking your people to interview a robot about work they already know how to do.
+          The snake-oil move is making your people ask for information they should already have. “Talk to your business.” That’s a prompt where a screen should have been enough.
         </p>
 
         <div class="mt-16 grid gap-14 md:grid-cols-2 md:gap-0">
@@ -256,7 +256,7 @@ const rules = [
         <div v-reveal class="md:col-span-7">
           <p class="eyebrow mb-8">04 — Who’s this guy</p>
           <p class="display text-3xl leading-[1.05] md:text-5xl">
-            I’ve been building since 2009 — startups, companies, websites, the software behind them. Agency years in the middle, then on my own in Austin. The hat is not a bit. Neither is the work. <em class="text-ink-muted">I use AI every day. That’s exactly why I don’t buy snake oil — and I don’t sell it.</em>
+            I’ve been building since 2009 — startups, companies, the ops software people actually touch. Agency years in the middle, then on my own in Austin. The hat is not a bit. Neither is the work. <em class="text-ink-muted">I embed, I ship, and I build AI that stays out of the way — the thesis, not a sticker on a marketing site.</em>
           </p>
         </div>
 

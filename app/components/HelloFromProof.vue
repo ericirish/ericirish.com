@@ -94,7 +94,7 @@ const steps = [
       <div v-reveal class="mt-20 md:mt-24">
         <p class="hf-kicker">How I helped</p>
         <p class="hf-display mt-4 max-w-2xl text-2xl font-semibold leading-snug tracking-tight text-pretty md:text-3xl">
-          The postcards were already working. They needed the next account without another hire. I wired agents into prospecting — find the place, write the note, style the card — so growth isn’t a chat bubble on the website.
+          The postcards were already working. They needed the next account without another hire. I wired agents into prospecting — find the place, write the note, style the card — invisible work, not another tool to log into.
         </p>
 
         <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">

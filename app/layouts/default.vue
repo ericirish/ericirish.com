@@ -15,7 +15,7 @@ const contactMailto = `mailto:${email}`
         </NuxtLink>
 
         <p class="eyebrow hidden items-center gap-2 md:flex">
-          Not the SEO guy
+          Invisible AI · embedded in your process
           <span class="star" aria-hidden="true" />
           Austin, TX
         </p>
