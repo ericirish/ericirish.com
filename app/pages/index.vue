@@ -33,7 +33,7 @@ const offers = [
   {
     n: '01',
     title: 'One job off your plate',
-    body: 'Quotes, bookings, follow-ups, the questions people call you about. I turn that one job into a system. AI only if it earns its keep — not because a snake-oil salesman said you needed it.',
+    body: 'Quotes, bookings, follow-ups, the questions people call you about. I turn that one job into a system. AI only when it earns its keep on that job.',
     good: 'One thing on your week that’s eating you.',
     ends: 'That job runs. You don’t hover.'
   },
@@ -54,7 +54,7 @@ const offers = [
   {
     n: '04',
     title: 'Keep me around',
-    body: 'After the build, I stick around part-time. When the next snake-oil salesman calls — they usually say SEO or AI — I’ll tell you if they’re selling work or a bottle. When something should be automated, I build it. When it shouldn’t, I say so.',
+    body: 'After the build, I stick around part-time. When the next vendor pitch lands, I’ll tell you if it’s real work or theater. When something should be automated, I build it. When it shouldn’t, I say so.',
     good: 'After a big operational push, or a team with nobody technical.',
     ends: 'It doesn’t. That’s the point.'
   }
@@ -84,7 +84,7 @@ const rules = [
   'I start with the work that’s eating your week — not a deck about “AI strategy.”',
   'I won’t make your team prompt a robot for numbers they already needed on screen.',
   'I won’t hand you a plan I can’t build myself.',
-  'I won’t sell you SEO and call it AI. That’s snake oil.'
+  'I won’t hand you buzzwords when you needed working software.'
 ]
 </script>
 
@@ -98,7 +98,7 @@ const rules = [
           <span class="star" aria-hidden="true" />
           <span>Austin, TX</span>
           <span class="star" aria-hidden="true" />
-          <span>Seventeen years. No snake oil.</span>
+          <span>Seventeen years. One person.</span>
         </p>
 
         <h1 class="hero-enter hero-enter-2 display max-w-[16ch] text-[clamp(2.5rem,6.6vw,5.75rem)] lg:col-span-7 lg:col-start-1 lg:row-start-2">
@@ -107,7 +107,7 @@ const rules = [
 
         <div class="hero-enter hero-enter-3 grid gap-10 md:items-end lg:col-span-7 lg:col-start-1 lg:row-start-3">
           <p class="lede max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
-            I embed with how you already work — not to sell you a prettier homepage. Snake-oil salesmen want buzzwords and chat bubbles; I build invisible AI that puts the answer in front of the right person before anyone has to ask. Seventeen years in startups and the systems behind them. I’ll tell you plainly where that earns its keep — and where it doesn’t.
+            I embed with how you already work — invisible AI that puts the answer in front of the right person before anyone has to ask. Seventeen years in startups and the systems behind them. I’ll tell you plainly where that earns its keep and where it doesn’t. No snake oil.
           </p>
 
           <div class="flex flex-wrap gap-3">
@@ -148,13 +148,13 @@ const rules = [
     <section class="border-b border-line">
       <div class="frame px-6 py-20 md:px-10 md:py-28">
         <div v-reveal class="mb-14 flex items-baseline justify-between gap-6">
-          <p class="eyebrow">01 — Snake oil vs. the real work</p>
+          <p class="eyebrow">01 — Pitched vs. what works</p>
           <p class="eyebrow hidden md:block">Read across</p>
         </div>
 
         <div class="grid gap-14 md:grid-cols-2 md:gap-0">
           <div v-reveal class="md:border-r md:border-line md:pr-14">
-            <h2 class="display text-3xl md:text-4xl">What the snake-oil salesman wants</h2>
+            <h2 class="display text-3xl md:text-4xl">What you’re usually pitched</h2>
             <ul class="mt-10 divide-y divide-line">
               <li v-for="item in asked" :key="item" class="flex items-baseline gap-5 py-4 text-ink-muted">
                 <span class="font-mono text-xs text-ink-faint" aria-hidden="true">×</span>
@@ -175,7 +175,7 @@ const rules = [
         </div>
 
         <p v-reveal class="display mx-auto mt-24 max-w-4xl text-center text-2xl text-ink md:text-4xl">
-          AI can’t invent a process you never had. <em class="text-ink-muted">If they can’t name the step in your week they’d change — the handoff, the check, the quote — they’re selling snake oil. SEO people have been doing it for years. Now they just say AI.</em>
+          AI can’t invent a process you never had. <em class="text-ink-muted">If they can’t name the step in your week they’d change — the handoff, the check, the quote — keep your wallet closed.</em>
         </p>
       </div>
     </section>
@@ -188,7 +188,7 @@ const rules = [
           Good AI is invisible. You shouldn’t have to chat with it.
         </h2>
         <p v-reveal class="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
-          The snake-oil move is making your people ask for information they should already have. “Talk to your business.” That’s a prompt where a screen should have been enough.
+          The wrong move is making your people ask for information they should already have. “Talk to your business.” That’s a prompt where a screen should have been enough.
         </p>
 
         <div class="mt-16 grid gap-14 md:grid-cols-2 md:gap-0">

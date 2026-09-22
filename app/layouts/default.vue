@@ -41,7 +41,7 @@ const contactMailto = `mailto:${email}`
             Say hello.<span class="text-accent">*</span>
           </a>
           <p class="mt-6 max-w-md text-ink-muted">
-            <span class="text-accent">*</span> If a snake-oil salesman just tried to sell you SEO with an AI sticker on it, I’ll tell you.
+            <span class="text-accent">*</span> Tell me what’s broken in your week. I’ll tell you if AI can help.
           </p>
         </div>
 

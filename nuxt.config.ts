@@ -35,24 +35,12 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true }
   },
-  $development: {
-    nitro: { preset: 'node-server' }
-  },
   nitro: {
-    preset: 'cloudflare_module',
+    preset: 'static',
     prerender: {
       routes: ['/'],
       crawlLinks: false,
       autoSubfolderIndex: false
-    },
-    cloudflare: {
-      deployConfig: true,
-      wrangler: {
-        name: 'ericirish',
-        compatibility_date: '2026-09-15',
-        compatibility_flags: ['nodejs_compat'],
-        observability: { enabled: true }
-      }
     }
   }
 })

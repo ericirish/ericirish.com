@@ -1,12 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "ericirish",
-  "main": ".output/server/index.mjs",
   "compatibility_date": "2026-09-15",
-  "compatibility_flags": ["nodejs_compat"],
-  "observability": { "enabled": true },
-  "assets": {
-    "directory": ".output/public",
-    "binding": "ASSETS"
-  }
+  "pages_build_output_dir": ".output/public"
 }
