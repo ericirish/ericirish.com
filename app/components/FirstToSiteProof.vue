@@ -59,7 +59,26 @@ const steps = [
         <figure v-reveal class="reveal-delay-1">
           <div class="fts-card fts-card-alert">
             <div class="fts-alert">
-              <p class="fts-alert-meta">
+              <svg class="fts-radar" viewBox="0 0 100 100" aria-hidden="true">
+                <defs>
+                  <linearGradient id="fts-sweep" x1="50" y1="6" x2="12" y2="28" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#f97316" stop-opacity="0.55" />
+                    <stop offset="1" stop-color="#f97316" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <g fill="none" stroke="#262626" stroke-width="1.5">
+                  <circle cx="50" cy="50" r="44" />
+                  <circle cx="50" cy="50" r="29" />
+                  <circle cx="50" cy="50" r="14" />
+                  <path d="M50 6v88M6 50h88" />
+                </g>
+                <g class="fts-radar-sweep">
+                  <path d="M50 50 50 6A44 44 0 0 0 11.9 28Z" fill="url(#fts-sweep)" />
+                  <path d="M50 50V6" stroke="#f97316" stroke-width="1.5" />
+                </g>
+                <circle class="fts-radar-blip" cx="72.6" cy="66.5" r="4" fill="#f97316" />
+              </svg>
+              <p class="fts-alert-meta pr-20 sm:pr-24">
                 <span>Sep 18</span>
                 <span class="fts-pill">Match</span>
                 <span>Residential</span>
@@ -89,12 +108,12 @@ const steps = [
         </p>
 
         <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <li v-for="step in steps" :key="step.n" class="fts-step">
+          <li v-for="(step, i) in steps" :key="step.n" class="fts-step" :style="{ '--i': i }">
             <span class="fts-step-n">{{ step.n }}</span>
             <p class="fts-step-title">{{ step.title }}</p>
             <p class="fts-step-body">{{ step.body }}</p>
           </li>
-          <li class="fts-step fts-step-human">
+          <li class="fts-step fts-step-human" style="--i: 3">
             <span class="fts-step-n">Then</span>
             <p class="fts-step-title">They call first.</p>
             <p class="fts-step-body">That part stays human. On purpose.</p>

@@ -167,7 +167,7 @@ body {
   padding: 5px;
   background:
     conic-gradient(
-      from 210deg,
+      from var(--ring-angle, 210deg),
       #6b4220,
       var(--color-brass),
       #8a5a28,

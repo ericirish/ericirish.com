@@ -9,8 +9,10 @@ const contactMailto = `mailto:${email}`
 <template>
   <div class="min-h-dvh text-ink">
     <header class="sticky top-0 z-40 border-b border-line bg-void/92 backdrop-blur-md">
+      <div class="scroll-progress" aria-hidden="true" />
       <div class="frame flex items-center justify-between px-6 py-4 md:px-10">
-        <NuxtLink to="/" class="font-display text-[1.35rem] tracking-tight">
+        <NuxtLink to="/" class="logo inline-flex items-center font-display text-[1.35rem] tracking-tight">
+          <span class="star logo-star" aria-hidden="true" />
           Eric Irish
         </NuxtLink>
 
@@ -35,10 +37,10 @@ const contactMailto = `mailto:${email}`
 
     <footer class="border-t border-line">
       <div class="frame grid gap-10 px-6 py-16 md:grid-cols-12 md:px-10 md:py-24">
-        <div class="md:col-span-7">
+        <div v-reveal class="md:col-span-7">
           <p class="eyebrow mb-6">Start here</p>
           <a :href="contactMailto" class="display block text-4xl md:text-6xl">
-            Say hello.<span class="text-accent">*</span>
+            <Scribble :delay="500">Say hello.</Scribble><span class="text-accent">*</span>
           </a>
           <p class="mt-6 max-w-md text-ink-muted">
             <span class="text-accent">*</span> Tell me what’s broken in your week. I’ll tell you if AI can help.
@@ -66,10 +68,12 @@ const contactMailto = `mailto:${email}`
         </div>
       </div>
 
-      <div class="border-t border-line">
+      <HillCountry />
+
+      <div class="bg-void-raised">
         <div class="frame flex flex-col gap-3 px-6 py-6 font-mono text-[0.75rem] tracking-wide text-ink-muted md:flex-row md:items-center md:justify-between md:px-10">
           <p>© {{ year }} Eric Irish · Austin, TX</p>
-          <p class="text-ink-faint">Built by hand. You talk to me, not a team.</p>
+          <p class="text-ink-faint">You talk to me, not a team.</p>
         </div>
       </div>
     </footer>

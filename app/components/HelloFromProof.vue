@@ -72,6 +72,16 @@ const steps = [
                 <div class="hf-stamp" aria-hidden="true">
                   <span class="hf-hand">hf</span>
                 </div>
+                <svg class="hf-postmark" viewBox="0 0 120 68" aria-hidden="true">
+                  <circle class="draw" pathLength="1" cx="34" cy="34" r="26" />
+                  <circle class="draw" pathLength="1" cx="34" cy="34" r="20" />
+                  <text x="34" y="31" text-anchor="middle">MAIN ST</text>
+                  <text x="34" y="42" text-anchor="middle">SEP 18</text>
+                  <path class="draw" pathLength="1" d="M62 20c8-5 14 5 22 0s14 5 22 0 10 4 14 1" />
+                  <path class="draw" pathLength="1" d="M64 30c8-5 14 5 22 0s14 5 22 0 10 4 14 1" />
+                  <path class="draw" pathLength="1" d="M64 40c8-5 14 5 22 0s14 5 22 0 10 4 14 1" />
+                  <path class="draw" pathLength="1" d="M62 50c8-5 14 5 22 0s14 5 22 0 10 4 14 1" />
+                </svg>
                 <div class="hf-address-lines" aria-hidden="true">
                   <p class="hf-script">The owner</p>
                   <p class="hf-script">Your place</p>
@@ -98,12 +108,12 @@ const steps = [
         </p>
 
         <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <li v-for="step in steps" :key="step.n" class="hf-step">
+          <li v-for="(step, i) in steps" :key="step.n" class="hf-step" :style="{ '--i': i }">
             <span class="hf-step-n">{{ step.n }}</span>
             <p class="hf-step-title">{{ step.title }}</p>
             <p class="hf-step-body">{{ step.body }}</p>
           </li>
-          <li class="hf-step hf-step-human">
+          <li class="hf-step hf-step-human" style="--i: 3">
             <span class="hf-step-n">Then</span>
             <p class="hf-step-title">A person hits send.</p>
             <p class="hf-step-body">That part stays human. On purpose.</p>

@@ -72,9 +72,9 @@ const steps = [
                 Gate latch won’t hold shut
               </p>
               <div class="sc-finding-tags">
-                <span class="sc-tag">Latch</span>
-                <span class="sc-tag">Gate</span>
-                <span class="sc-tag sc-tag-cause">Likely · hardware</span>
+                <span class="sc-tag" style="--i: 0">Latch</span>
+                <span class="sc-tag" style="--i: 1">Gate</span>
+                <span class="sc-tag sc-tag-cause" style="--i: 2">Likely · hardware</span>
               </div>
               <p class="sc-finding-foot">Jev classified tags · 8:17 AM</p>
             </div>
@@ -92,12 +92,12 @@ const steps = [
         </p>
 
         <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <li v-for="step in steps" :key="step.n" class="sc-step">
+          <li v-for="(step, i) in steps" :key="step.n" class="sc-step" :style="{ '--i': i }">
             <span class="sc-step-n">{{ step.n }}</span>
             <p class="sc-step-title">{{ step.title }}</p>
             <p class="sc-step-body">{{ step.body }}</p>
           </li>
-          <li class="sc-step sc-step-human">
+          <li class="sc-step sc-step-human" style="--i: 3">
             <span class="sc-step-n">Then</span>
             <p class="sc-step-title">Staff fix it.</p>
             <p class="sc-step-body">That part stays human. On purpose.</p>

@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-15',
   modules: ['@nuxt/ui', '@nuxt/fonts'],
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/motion.css'],
   colorMode: {
     preference: 'system',
     fallback: 'light',
