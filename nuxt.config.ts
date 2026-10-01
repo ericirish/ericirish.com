@@ -1,3 +1,11 @@
+import { contactEmail, machinePaths, siteUrl } from './shared/site'
+
+const link = [
+  '</llms.txt>; rel="llm-context"; type="text/markdown"',
+  '</llms.txt>; rel="describedby"; type="text/markdown"',
+  '</index.md>; rel="alternate"; type="text/markdown"'
+].join(', ')
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-15',
   modules: ['@nuxt/ui', '@nuxt/fonts'],
@@ -22,8 +30,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: 'https://eric.irish',
-      contactEmail: 'hello@eric.irish'
+      siteUrl,
+      contactEmail
     }
   },
   app: {
@@ -33,12 +41,29 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/': { prerender: true }
+    '/': {
+      prerender: true,
+      headers: { link }
+    },
+    [machinePaths.llms]: { prerender: true },
+    [machinePaths.llmsFull]: { prerender: true },
+    [machinePaths.markdown]: { prerender: true },
+    [machinePaths.robots]: { prerender: true },
+    [machinePaths.sitemap]: { prerender: true },
+    [machinePaths.wellKnown]: { prerender: true }
   },
   nitro: {
     preset: 'static',
     prerender: {
-      routes: ['/'],
+      routes: [
+        '/',
+        machinePaths.llms,
+        machinePaths.llmsFull,
+        machinePaths.markdown,
+        machinePaths.robots,
+        machinePaths.sitemap,
+        machinePaths.wellKnown
+      ],
       crawlLinks: false,
       autoSubfolderIndex: false
     }

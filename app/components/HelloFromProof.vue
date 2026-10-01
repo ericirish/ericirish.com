@@ -1,23 +1,9 @@
 <script setup lang="ts">
-const site = 'https://hellofrom.to'
+import { caseStudies } from '#shared/site'
 
-const steps = [
-  {
-    n: '01',
-    title: 'Finds the place',
-    body: 'Research and photos. No spreadsheet, no list to work through.'
-  },
-  {
-    n: '02',
-    title: 'Writes the note',
-    body: 'First person, in their voice, about that one specific place.'
-  },
-  {
-    n: '03',
-    title: 'Styles the card',
-    body: 'Photo, layout, the look of the thing. No designer in the queue.'
-  }
-]
+const study = caseStudies.helloFrom
+const site = study.url
+const steps = study.steps
 </script>
 
 <template>
@@ -25,7 +11,7 @@ const steps = [
     <div class="frame px-6 py-20 md:px-10 md:py-28">
       <!-- 1. Who they are -->
       <header v-reveal class="max-w-3xl">
-        <p class="hf-kicker">Case study · HelloFrom</p>
+        <p class="hf-kicker">{{ study.kicker }}</p>
         <h2 class="mt-6">
           <a :href="site" target="_blank" rel="noreferrer" class="hf-brand-link">
             <img
@@ -38,7 +24,7 @@ const steps = [
           </a>
         </h2>
         <p class="hf-display mt-6 text-2xl font-semibold leading-snug tracking-tight text-pretty md:text-4xl">
-          A postcard company. A guest scans a code at the counter, writes a note on their phone, and HelloFrom prints it and mails it. Nothing for the place to stock.
+          {{ study.summary }}
         </p>
       </header>
 
@@ -104,7 +90,7 @@ const steps = [
       <div v-reveal class="mt-20 md:mt-24">
         <p class="hf-kicker">How I helped</p>
         <p class="hf-display mt-4 max-w-2xl text-2xl font-semibold leading-snug tracking-tight text-pretty md:text-3xl">
-          The postcards were already working. They needed the next account without another hire. I wired agents into prospecting — find the place, write the note, style the card — invisible work, not another tool to log into.
+          {{ study.helped }}
         </p>
 
         <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -115,8 +101,8 @@ const steps = [
           </li>
           <li class="hf-step hf-step-human" style="--i: 3">
             <span class="hf-step-n">Then</span>
-            <p class="hf-step-title">A person hits send.</p>
-            <p class="hf-step-body">That part stays human. On purpose.</p>
+            <p class="hf-step-title">{{ study.then.title }}</p>
+            <p class="hf-step-body">{{ study.then.body }}</p>
           </li>
         </ol>
       </div>
@@ -124,11 +110,11 @@ const steps = [
       <!-- 4. Link -->
       <div v-reveal class="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4">
         <a :href="site" target="_blank" rel="noreferrer" class="hf-btn">
-          hellofrom.to
+          {{ study.linkLabel }}
           <span aria-hidden="true">→</span>
         </a>
         <p class="text-sm font-medium text-[var(--hf-ink-muted)]">
-          Their team still approves. The machine does the first pass.
+          {{ study.footnote }}
         </p>
       </div>
     </div>

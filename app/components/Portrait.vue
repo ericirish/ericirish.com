@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { identity } from '#shared/site'
+
 withDefaults(defineProps<{
   size?: 'mark' | 'hero'
   caption?: string
@@ -23,7 +25,7 @@ const sparkles = [
     <div class="portrait-ring">
       <img
         src="/EricIrish.jpg"
-        alt="Eric Irish in a cowboy hat, suede jacket, and a Texas belt buckle"
+        :alt="identity.portraitAlt"
         width="1201"
         height="1800"
         :fetchpriority="priority ? 'high' : undefined"

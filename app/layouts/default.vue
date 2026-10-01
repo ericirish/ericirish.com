@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { footer, headerLine, identity } from '#shared/site'
+
 const config = useRuntimeConfig()
 const email = String(config.public.contactEmail)
 const year = new Date().getFullYear()
@@ -13,11 +15,11 @@ const contactMailto = `mailto:${email}`
       <div class="frame flex items-center justify-between px-6 py-4 md:px-10">
         <NuxtLink to="/" class="logo inline-flex items-center font-display text-[1.35rem] tracking-tight">
           <span class="star logo-star" aria-hidden="true" />
-          Eric Irish
+          {{ identity.name }}
         </NuxtLink>
 
         <p class="eyebrow hidden items-center gap-2 md:flex">
-          Invisible AI · embedded in your process
+          {{ headerLine }}
           <span class="star" aria-hidden="true" />
           Austin, TX
         </p>
@@ -40,22 +42,23 @@ const contactMailto = `mailto:${email}`
         <div v-reveal class="md:col-span-7">
           <p class="eyebrow mb-6">Start here</p>
           <a :href="contactMailto" class="display block text-4xl md:text-6xl">
-            <Scribble :delay="500">Say hello.</Scribble><span class="text-accent">*</span>
+            <Scribble :delay="500">{{ footer.hello }}</Scribble><span class="text-accent">*</span>
           </a>
           <p class="mt-6 max-w-md text-ink-muted">
-            <span class="text-accent">*</span> Tell me what’s broken in your week. I’ll tell you if AI can help.
+            <span class="text-accent">*</span> {{ footer.note }}
           </p>
         </div>
 
         <div class="grid gap-8 font-mono text-[0.8125rem] leading-relaxed md:col-span-5 md:grid-cols-2">
-          <div>
+          <address class="not-italic">
             <p class="eyebrow mb-3">Reach me</p>
             <ul class="space-y-2">
               <li><a :href="`mailto:${email}`" class="link">{{ email }}</a></li>
-              <li><a href="https://www.linkedin.com/in/ecirish" rel="noreferrer" class="link">LinkedIn</a></li>
-              <li><a href="https://github.com/ericirish" rel="noreferrer" class="link">GitHub</a></li>
+              <li>{{ identity.location }}</li>
+              <li><a :href="identity.linkedin" rel="me noreferrer" class="link">LinkedIn</a></li>
+              <li><a :href="identity.github" rel="me noreferrer" class="link">GitHub</a></li>
             </ul>
-          </div>
+          </address>
           <div>
             <p class="eyebrow mb-3">With them</p>
             <ul class="space-y-2">
@@ -73,7 +76,7 @@ const contactMailto = `mailto:${email}`
       <div class="bg-void-raised">
         <div class="frame flex flex-col gap-3 px-6 py-6 font-mono text-[0.75rem] tracking-wide text-ink-muted md:flex-row md:items-center md:justify-between md:px-10">
           <p>© {{ year }} Eric Irish · Austin, TX</p>
-          <p class="text-ink-faint">You talk to me, not a team.</p>
+          <p class="text-ink-faint">{{ footer.signoff }}</p>
         </div>
       </div>
     </footer>

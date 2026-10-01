@@ -1,101 +1,31 @@
 <script setup lang="ts">
 import TestimonialsSection from '~/components/TestimonialsSection.vue'
-
-const config = useRuntimeConfig()
-const siteUrl = String(config.public.siteUrl).replace(/\/$/, '')
+import {
+  actuallyHelps as changes,
+  headline,
+  identity,
+  lede,
+  offers,
+  pitched as asked,
+  rules,
+  seo,
+  siteUrl,
+  stats,
+  thesis,
+  thesisRight,
+  thesisSold,
+  timeline,
+  wallet
+} from '#shared/site'
 
 useSeoMeta({
-  title: 'Eric Irish — Yes, AI can do real work in your business. I’m the guy who actually builds it.',
-  description: 'I embed with how your business already runs and build invisible AI — the right information in front of the right person, no prompt. Seventeen years in startups and ops software. Plain talk on where it helps and where it doesn’t.',
-  ogTitle: 'Yes, AI can do real work in your business. I’m the guy who actually builds it.',
-  ogDescription: 'Hands-on AI transformation: embedded in your processes, not a chat bubble on your homepage. One person, seventeen years, Austin TX.',
-  ogUrl: siteUrl,
-  ogImage: `${siteUrl}/EricIrish.jpg`
+  title: seo.title,
+  description: seo.description,
+  ogTitle: seo.ogTitle,
+  ogDescription: seo.ogDescription,
+  ogUrl: `${siteUrl}/`,
+  ogImage: identity.portrait
 })
-
-const stats = [
-  { label: 'Years building this stuff', from: 0, to: 17, note: 'since 2009' },
-  { label: 'People you’ll deal with', from: 12, to: 1, note: 'no handoffs' },
-  { label: 'Strategy decks before code', from: 40, to: 0, note: 'on purpose' }
-]
-
-const asked = [
-  'Months of “discovery” before anything changes',
-  'To “optimize you for ChatGPT”',
-  'Software that only works if someone asks it a question',
-  'A monthly report full of charts',
-  'A year-long contract before anything gets built'
-]
-
-const changes = [
-  'Someone embedded long enough to learn how the week actually runs',
-  'The facts your people keep in their heads — written where the system can use them',
-  'The stuff you do by hand every day — quotes, bookings, follow-ups — turned into a flow',
-  'Invisible AI on that flow: the answer already on screen, nobody typing a prompt',
-  'One person you can call who will tell you no'
-]
-
-const offers = [
-  {
-    n: '01',
-    glyph: 'lasso',
-    title: 'One job off your plate',
-    body: 'Quotes, bookings, follow-ups, the questions people call you about. I turn that one job into a system. AI only when it earns its keep on that job.',
-    good: 'One thing on your week that’s eating you.',
-    ends: 'That job runs. You don’t hover.'
-  },
-  {
-    n: '02',
-    glyph: 'gears',
-    title: 'Embed in how you operate',
-    body: 'I work inside your process — quoting, booking, dispatch, compliance rounds, whatever actually runs the week — and wire it so information shows up where people already are. Not a side project. Not a new tool they have to remember to open.',
-    good: 'Smart people repeating the same steps every morning.',
-    ends: 'The flow runs. The answer was already there.'
-  },
-  {
-    n: '03',
-    glyph: 'flow',
-    title: 'Invisible AI on real work',
-    body: 'The inbox, the spreadsheet, the handoff between teams — that’s where the mess is. I plug AI into those moments so your people get what they need without interviewing a chatbot.',
-    good: 'You know what should be automatic. Nobody’s had time to build it.',
-    ends: 'Information delivered. No prompt.'
-  },
-  {
-    n: '04',
-    glyph: 'badge',
-    title: 'Keep me around',
-    body: 'After the build, I stick around part-time. When the next vendor pitch lands, I’ll tell you if it’s real work or theater. When something should be automated, I build it. When it shouldn’t, I say so.',
-    good: 'After a big operational push, or a team with nobody technical.',
-    ends: 'It doesn’t. That’s the point.'
-  }
-] as const
-
-const thesisSold = [
-  'A chat window so someone can “ask the system”',
-  'A box where your staff has to prompt a robot for last week’s numbers',
-  'A wrapper on your data that still needs a conversation',
-  'A demo that looks smart until someone asks a real question'
-]
-
-const thesisRight = [
-  'The quote is already drafted when they sit down',
-  'The booking is already on the calendar',
-  'The number they needed is already on the screen',
-  'Nobody typed a prompt. The work just showed up.'
-]
-
-const timeline = [
-  ['2009 — now', 'Building', 'Startups, companies, and the software that runs them.'],
-  ['2015 — 2019', 'At an agency', 'Same job, more meetings.'],
-  ['2019 — now', 'On my own', 'One person, no account manager. DoorCheck along the way.']
-]
-
-const rules = [
-  'I start with the work that’s eating your week — not a deck about “AI strategy.”',
-  'I won’t make your team prompt a robot for numbers they already needed on screen.',
-  'I won’t hand you a plan I can’t build myself.',
-  'I won’t hand you buzzwords when you needed working software.'
-]
 </script>
 
 <template>
@@ -105,7 +35,7 @@ const rules = [
       <HeroBackdrop />
       <div class="frame relative grid items-center gap-12 px-6 pb-16 pt-12 md:px-10 md:pb-24 md:pt-20 lg:grid-cols-12 lg:gap-10">
         <p class="hero-enter hero-enter-1 eyebrow mb-0 flex flex-wrap items-center gap-x-3 gap-y-2 lg:col-span-7 lg:col-start-1 lg:row-start-1">
-          <span>Eric Irish</span>
+          <span>{{ identity.name }}</span>
           <span class="star" aria-hidden="true" />
           <span>Austin, TX</span>
           <span class="star" aria-hidden="true" />
@@ -113,12 +43,12 @@ const rules = [
         </p>
 
         <h1 class="hero-enter hero-enter-2 display max-w-[16ch] text-[clamp(2.5rem,6.6vw,5.75rem)] lg:col-span-7 lg:col-start-1 lg:row-start-2">
-          Yes, AI can do real work in your business. <em>I’m the guy who actually <Scribble auto :delay="1400">builds it.</Scribble></em>
+          {{ headline.before }}<em>{{ headline.emphasis }}<Scribble auto :delay="1400">{{ headline.scribble }}</Scribble></em>
         </h1>
 
         <div class="hero-enter hero-enter-3 grid gap-10 md:items-end lg:col-span-7 lg:col-start-1 lg:row-start-3">
           <p class="lede max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
-            I embed with how you already work — invisible AI that puts the answer in front of the right person before anyone has to ask. Seventeen years in startups and the systems behind them. I’ll tell you plainly where that earns its keep and where it doesn’t. No snake oil.
+            {{ lede }}
           </p>
 
           <div class="flex flex-wrap gap-3">
@@ -131,7 +61,7 @@ const rules = [
         <div class="hero-enter hero-enter-4 flex justify-center lg:col-span-5 lg:col-start-8 lg:row-span-3 lg:row-start-1 lg:justify-end">
           <Portrait
             size="hero"
-            caption="That’s me. Not an AI photo."
+            :caption="identity.portraitCaption"
             priority
           />
         </div>
@@ -183,7 +113,7 @@ const rules = [
         </div>
 
         <p v-reveal class="display mx-auto mt-24 max-w-4xl text-center text-2xl text-ink md:text-4xl">
-          AI can’t invent a process you never had. <em class="text-ink-muted">If they can’t name the step in your week they’d change — the handoff, the check, the quote — <Scribble kind="circle" :delay="900">keep your wallet closed.</Scribble></em>
+          {{ wallet.lead }}<em class="text-ink-muted">{{ wallet.emphasis }}<Scribble kind="circle" :delay="900">{{ wallet.scribble }}</Scribble></em>
         </p>
       </div>
     </section>
@@ -193,10 +123,10 @@ const rules = [
       <div class="frame px-6 py-20 md:px-10 md:py-28">
         <p v-reveal class="eyebrow mb-8">02 — The thesis</p>
         <h2 v-reveal class="display max-w-[16ch] text-4xl md:text-6xl">
-          Good AI is invisible. You shouldn’t have to chat with it.
+          {{ thesis.heading }}
         </h2>
         <p v-reveal class="mt-8 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">
-          The wrong move is making your people ask for information they should already have. “Talk to your business.” That’s a prompt where a screen should have been enough.
+          {{ thesis.body }}
         </p>
 
         <InvisibleDemo />
@@ -223,7 +153,7 @@ const rules = [
         </div>
 
         <p v-reveal class="display mx-auto mt-24 max-w-4xl text-center text-2xl text-ink md:text-4xl">
-          You don’t need a chatbot. <em class="text-ink-muted">You need the right thing in front of the right person at the right time — already there, no prompt. Then they get back to the customer.</em>
+          {{ thesis.closeLead }}<em class="text-ink-muted">{{ thesis.closeEmphasis }}</em>
         </p>
       </div>
     </section>

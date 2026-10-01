@@ -1,30 +1,16 @@
 <script setup lang="ts">
-const site = 'https://austin.firsttosite.com'
+import { caseStudies } from '#shared/site'
 
-const steps = [
-  {
-    n: '01',
-    title: 'Reads the permit',
-    body: 'Every Austin filing, the morning it drops. No one is hunting the city’s website.'
-  },
-  {
-    n: '02',
-    title: 'Jev classifies it',
-    body: 'Instant. Trade, scope, scale. A roof is not a remodel. No one typed a prompt.'
-  },
-  {
-    n: '03',
-    title: 'Sends the alert',
-    body: 'Email or text. Address, what it is, how big. Already in their pocket.'
-  }
-]
+const study = caseStudies.firstToSite
+const site = study.url
+const steps = study.steps
 </script>
 
 <template>
   <article class="fts border-t border-black">
     <div class="frame px-6 py-20 md:px-10 md:py-28">
       <header v-reveal class="max-w-3xl">
-        <p class="fts-kicker">Case study · FirstToSite</p>
+        <p class="fts-kicker">{{ study.kicker }}</p>
         <h2 class="mt-6">
           <a :href="site" target="_blank" rel="noreferrer" class="fts-mark">
             <span class="fts-f" aria-hidden="true">F</span>
@@ -35,10 +21,10 @@ const steps = [
           </a>
         </h2>
         <p class="fts-display mt-6 max-w-[20ch] text-2xl leading-[1.05] text-pretty md:text-4xl">
-          New permits, alerted to you first.
+          {{ study.display }}
         </p>
         <p class="mt-5 max-w-xl text-base font-medium leading-relaxed text-[var(--fts-ink-muted)] text-pretty md:text-lg">
-          Every Austin municipal permit, scored by trade, scope, and scale. A contractor sets an alert. The match arrives. They reach the job before the crowd.
+          {{ study.summary }}
         </p>
       </header>
 
@@ -104,7 +90,7 @@ const steps = [
       <div v-reveal class="mt-20 md:mt-24">
         <p class="fts-kicker">How I helped</p>
         <p class="mt-4 max-w-2xl text-xl font-semibold leading-snug tracking-tight text-pretty md:text-2xl">
-          They already had the permit feed. They needed the right job in a contractor’s pocket, not a spreadsheet hunt. I helped them plug in Jev — trade, scope, scale the moment each filing lands. No prompt. No chat widget.
+          {{ study.helped }}
         </p>
 
         <ol class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -115,23 +101,23 @@ const steps = [
           </li>
           <li class="fts-step fts-step-human" style="--i: 3">
             <span class="fts-step-n">Then</span>
-            <p class="fts-step-title">They call first.</p>
-            <p class="fts-step-body">That part stays human. On purpose.</p>
+            <p class="fts-step-title">{{ study.then.title }}</p>
+            <p class="fts-step-body">{{ study.then.body }}</p>
           </li>
         </ol>
 
         <p class="mt-10 max-w-2xl text-base font-medium leading-relaxed text-[var(--fts-ink-muted)] text-pretty md:text-lg">
-          Next with them: automated prospecting — same invisible stack, pointed at who’s worth calling before the crowd shows up.
+          {{ study.next }}
         </p>
       </div>
 
       <div v-reveal class="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4">
         <a :href="site" target="_blank" rel="noreferrer" class="fts-btn">
-          austin.firsttosite.com
+          {{ study.linkLabel }}
           <span aria-hidden="true">→</span>
         </a>
         <p class="text-sm font-medium text-[var(--fts-ink-faint)]">
-          Jev scores the permit. The contractor gets the match.
+          {{ study.footnote }}
         </p>
       </div>
     </div>
