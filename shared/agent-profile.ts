@@ -2,8 +2,13 @@ import {
   about,
   actuallyHelps,
   caseStudies,
+  companies,
   contactEmail,
+  experience,
+  experienceIntro,
+  experienceSeo,
   footer,
+  github,
   headline,
   identity,
   lede,
@@ -14,6 +19,7 @@ import {
   rules,
   seo,
   siteUrl,
+  stacks,
   stats,
   thesis,
   thesisRight,
@@ -38,7 +44,7 @@ export function llmsTxt() {
 
 > ${identity.name} builds invisible AI for real business operations from ${identity.location}. He embeds in how a company already works and puts the right information in front of the right person before anyone has to ask. One person, building since 2009. Contact ${contactEmail}. Canonical site: ${siteUrl}/
 
-${identity.name} (${siteUrl}/) is an independent builder in ${identity.location}, United States. He has been building startups, companies, and the software that runs them since 2009. From 2015 to 2019 he worked at an agency. Since 2019 he has worked on his own: one person, no account manager, no handoffs. The site mentions DoorCheck only as something that happened along the way. It does not describe DoorCheck.
+${identity.name} (${siteUrl}/) is an independent builder in ${identity.location}, United States. He has been building startups, companies, and the software that runs them since 2009. He built CampusSafe from 2012 to 2015. From 2016 to 2019 he was a solutions architect at Springbox, a Prophet company. From February 2019 to October 2024 he was a solutions architect at Kordami. He is a principal solutions architect at Kale Ventures (since February 2020) and Frank & Victor (since April 2024), and founder of SchoolCheck, formerly DoorCheck, since February 2024. The site names DoorCheck only as the former name of SchoolCheck. It does not describe the earlier product. ${abs(machinePaths.experience)} is the role list.
 
 In his words: ${lede}
 
@@ -53,6 +59,8 @@ Generated ${generatedOn()} from the pages on ${siteUrl}/.
 - [Full context](${abs(machinePaths.llmsFull)}): Offers, house rules, track record, and the HelloFrom, FirstToSite, and SchoolCheck work.
 - [Homepage](${siteUrl}/): The page this file describes.
 - [Homepage in Markdown](${abs(machinePaths.markdown)}): The same page, without the layout.
+- [Experience](${abs(machinePaths.experience)}): Roles since 2009, the companies on this site, and the stack he ships with.
+- [Experience in Markdown](${abs(machinePaths.experienceMarkdown)}): The same page, without the layout.
 
 ## Ways to work with him
 
@@ -178,12 +186,54 @@ ${footer.hello} ${footer.note}
 `
 }
 
+export function experienceMarkdown() {
+  const roles = experience.map(role => {
+    const org = role.org ? ` ${role.org}.` : ''
+    const note = role.note ? ` ${role.note}` : ''
+    return `- ${role.when} — ${role.title}.${org}${note}`
+  })
+
+  return `# ${experienceIntro.headline}
+
+${identity.name}. ${experienceIntro.lede}
+
+## The work
+
+${roles.join('\n')}
+
+## Notable companies
+
+${companies.map(company => {
+    const label = company.url ? `[${company.name}](${company.url})` : company.name
+    return company.note ? `- ${label}: ${company.note}` : `- ${label}`
+  }).join('\n')}
+
+## Preferred stack
+
+${github.line}
+
+${stacks.map(group => `### ${group.label}
+
+${group.items.join(', ')}
+
+${group.note}`).join('\n\n')}
+
+## Contact
+
+- Email: ${contactEmail}
+- Location: ${identity.location}
+- Page: ${abs(machinePaths.experience)}
+`
+}
+
 export function llmsFullTxt() {
   return `# ${identity.name} — full context
 
-This is the long version of ${abs(machinePaths.llms)}. It restates ${siteUrl}/ in Markdown. Prefer the short file when a few paragraphs are enough.
+This is the long version of ${abs(machinePaths.llms)}. It restates ${siteUrl}/ and ${abs(machinePaths.experience)} in Markdown. Prefer the short file when a few paragraphs are enough.
 
-${pageMarkdown()}`
+${pageMarkdown()}
+
+${experienceMarkdown()}`
 }
 
 export function robotsTxt() {
@@ -207,9 +257,11 @@ export function sitemapXml() {
   const lastmod = generatedOn()
   const urls = [
     { loc: `${siteUrl}/`, priority: '1.0' },
+    { loc: abs(machinePaths.experience), priority: '0.9' },
     { loc: abs(machinePaths.llms), priority: '0.8' },
     { loc: abs(machinePaths.llmsFull), priority: '0.6' },
-    { loc: abs(machinePaths.markdown), priority: '0.6' }
+    { loc: abs(machinePaths.markdown), priority: '0.6' },
+    { loc: abs(machinePaths.experienceMarkdown), priority: '0.6' }
   ]
 
   const body = urls.map(url => `  <url>
@@ -229,6 +281,9 @@ export function jsonLd() {
   const hello = caseStudies.helloFrom
   const first = caseStudies.firstToSite
   const school = caseStudies.schoolCheck
+  const employers = experience.filter(role => role.org)
+  const currentEmployers = employers.filter(role => role.when.endsWith('now'))
+  const formerEmployers = employers.filter(role => !role.when.endsWith('now'))
 
   return {
     '@context': 'https://schema.org',
@@ -287,8 +342,25 @@ export function jsonLd() {
           'Embedding software in an existing business process',
           'Quotes, bookings, and follow-ups',
           'Permit classification',
-          'K-12 safety checks'
+          'K-12 safety checks',
+          ...stacks.flatMap(group => group.items)
         ],
+        ...(currentEmployers.length
+          ? {
+              worksFor: currentEmployers.map(role => ({
+                '@type': 'Organization',
+                name: role.org
+              }))
+            }
+          : {}),
+        ...(formerEmployers.length
+          ? {
+              alumniOf: formerEmployers.map(role => ({
+                '@type': 'Organization',
+                name: role.org
+              }))
+            }
+          : {}),
         workExample: [
           {
             '@type': 'CreativeWork',
@@ -309,6 +381,22 @@ export function jsonLd() {
             description: `${school.display} ${school.summary} ${school.helped}`
           }
         ]
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${siteUrl}/experience#page`,
+        url: `${siteUrl}/experience`,
+        name: experienceSeo.title,
+        description: experienceSeo.description,
+        inLanguage: 'en',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': `${siteUrl}/#eric` },
+        mentions: companies.map(company => ({
+          '@type': 'Organization',
+          name: company.name,
+          ...(company.url ? { url: company.url } : {}),
+          ...(company.note ? { description: company.note } : {})
+        }))
       },
       {
         '@type': 'ImageObject',

@@ -2,14 +2,27 @@
 import { jsonLd } from '#shared/agent-profile'
 import { identity, machinePaths, siteUrl } from '#shared/site'
 
-useHead({
+const route = useRoute()
+
+const pageUrl = computed(() => {
+  const path = route.path.replace(/\/$/, '') || '/'
+  return path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`
+})
+
+const markdownPath = computed(() =>
+  route.path.replace(/\/$/, '') === machinePaths.experience
+    ? machinePaths.experienceMarkdown
+    : machinePaths.markdown
+)
+
+useHead(() => ({
   link: [
     { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-    { rel: 'canonical', href: `${siteUrl}/` },
-    { rel: 'alternate', href: `${siteUrl}/`, hreflang: 'en' },
+    { rel: 'canonical', href: pageUrl.value, key: 'canonical' },
+    { rel: 'alternate', href: pageUrl.value, hreflang: 'en', key: 'hreflang' },
     { rel: 'llm-context', href: machinePaths.llms, type: 'text/markdown' },
     { rel: 'describedby', href: machinePaths.llms, type: 'text/markdown' },
-    { rel: 'alternate', href: machinePaths.markdown, type: 'text/markdown', title: 'Markdown version' }
+    { rel: 'alternate', href: markdownPath.value, type: 'text/markdown', title: 'Markdown version', key: 'markdown' }
   ],
   script: [
     {
@@ -20,13 +33,13 @@ useHead({
   noscript: [
     { innerHTML: '<style>.reveal{opacity:1!important;transform:none!important}</style>' }
   ]
-})
+}))
 
 useSeoMeta({
   ogSiteName: identity.name,
   ogType: 'website',
   ogLocale: 'en_US',
-  ogUrl: `${siteUrl}/`,
+  ogUrl: pageUrl,
   ogImage: identity.portrait,
   ogImageAlt: identity.portraitAlt,
   twitterCard: 'summary_large_image',

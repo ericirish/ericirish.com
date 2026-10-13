@@ -213,6 +213,11 @@ useSeoMeta({
                 <p class="text-sm text-ink-muted">{{ note }}</p>
               </li>
             </ul>
+            <p class="mt-5">
+              <NuxtLink to="/experience" class="link inline-flex items-center gap-2 font-mono text-[0.8125rem]">
+                The longer version <span aria-hidden="true">→</span>
+              </NuxtLink>
+            </p>
           </div>
 
           <div>

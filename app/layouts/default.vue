@@ -26,6 +26,7 @@ const contactMailto = `mailto:${email}`
 
         <nav class="flex items-center gap-6 font-mono text-[0.75rem] tracking-wide">
           <a href="/#offer" class="link-muted hidden transition-colors sm:inline">Work with me</a>
+          <NuxtLink to="/experience" class="link-muted hidden transition-colors sm:inline">Experience</NuxtLink>
           <a href="/#about" class="link-muted hidden transition-colors sm:inline">About</a>
           <a :href="contactMailto" class="inline-flex items-center gap-2 text-ink">
             <span class="pulse-dot inline-block size-1.5 rounded-full bg-accent" aria-hidden="true" />

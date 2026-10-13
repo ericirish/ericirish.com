@@ -45,9 +45,11 @@ export default defineNuxtConfig({
       prerender: true,
       headers: { link }
     },
+    [machinePaths.experience]: { prerender: true },
     [machinePaths.llms]: { prerender: true },
     [machinePaths.llmsFull]: { prerender: true },
     [machinePaths.markdown]: { prerender: true },
+    [machinePaths.experienceMarkdown]: { prerender: true },
     [machinePaths.robots]: { prerender: true },
     [machinePaths.sitemap]: { prerender: true },
     [machinePaths.wellKnown]: { prerender: true }
@@ -57,9 +59,11 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/',
+        machinePaths.experience,
         machinePaths.llms,
         machinePaths.llmsFull,
         machinePaths.markdown,
+        machinePaths.experienceMarkdown,
         machinePaths.robots,
         machinePaths.sitemap,
         machinePaths.wellKnown

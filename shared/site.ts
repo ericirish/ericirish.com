@@ -202,10 +202,103 @@ export const caseStudies = {
 
 export const proofHeading = 'Real companies, real AI transformation — not a slide deck.'
 
+export const experienceIntro = {
+  eyebrow: 'Experience',
+  headline: 'The work, the companies, and the stack.',
+  lede: 'Seventeen years. One person. Austin. CampusSafe, then Springbox, then Kordami — and the work that’s current.'
+} as const
+
+export const experienceSeo = {
+  title: 'Eric Irish — The work, the companies, and the stack.',
+  description:
+    'Seventeen years. One person. Austin. CampusSafe, Springbox, Kordami, then SchoolCheck, Frank & Victor, and Kale Ventures.',
+  ogTitle: 'The work, the companies, and the stack.',
+  ogDescription:
+    'CampusSafe, Springbox, Kordami, and the work that’s current. One person, Austin.'
+} as const
+
+export const experience = [
+  {
+    when: 'Apr 2024 — now',
+    title: 'Principal Solutions Architect',
+    org: 'Frank & Victor',
+    note: ''
+  },
+  {
+    when: 'Feb 2024 — now',
+    title: 'Founder',
+    org: 'SchoolCheck',
+    note: 'Formerly DoorCheck.'
+  },
+  {
+    when: 'Feb 2020 — now',
+    title: 'Principal Solutions Architect',
+    org: 'Kale Ventures',
+    note: ''
+  },
+  {
+    when: 'Feb 2019 — Oct 2024',
+    title: 'Solutions Architect',
+    org: 'Kordami',
+    note: ''
+  },
+  {
+    when: '2016 — 2019',
+    title: 'Solutions Architect',
+    org: 'Springbox',
+    note: 'A Prophet company. Same job, more meetings.'
+  },
+  {
+    when: '2012 — 2015',
+    title: 'Founder',
+    org: 'CampusSafe',
+    note: 'I built it.'
+  }
+] as const
+
+export const companies = [
+  { name: 'Dell', url: 'https://www.dell.com', note: '', logo: '/logos/dell.svg' },
+  { name: 'HomeAway', url: 'https://www.homeaway.com', note: '', logo: '/logos/homeaway.png' },
+  { name: 'Whole Foods', url: 'https://www.wholefoodsmarket.com', note: '', logo: '/logos/whole-foods.png' },
+  { name: 'Tigé', url: 'https://www.tige.com', note: '', logo: '/logos/tige.png' },
+  { name: 'VENT', url: 'https://ventbird.com', note: 'Victor Emanuel Nature Tours.', logo: '/logos/vent.png' },
+  { name: 'Ernie Ball', url: 'https://www.ernieball.com', note: '', logo: '/logos/ernie-ball.svg' },
+  { name: 'Avila Soccer', url: 'https://avilasoccer.com', note: '', logo: '/logos/avila.png' },
+  { name: 'Ally Medical', url: 'https://www.allymedical.com', note: '', logo: '/logos/ally.png' },
+  { name: 'Radio Flyer', url: 'https://www.radioflyer.com', note: '', logo: '/logos/radio-flyer.png' },
+  { name: 'POWER Engineers', url: 'https://www.powereng.com', note: '', logo: '' },
+  { name: 'Tri-Supply', url: '', note: '', logo: '' }
+] as const
+
+export const github = {
+  commits: 18100,
+  line: 'About 18,100 commits on the public graph, from 2012 through this year.'
+} as const
+
+export const stacks = [
+  {
+    label: 'Now',
+    note: 'Most projects.',
+    items: ['Nuxt Hub', 'Cloudflare', 'D1', 'Nuxt 4']
+  },
+  {
+    label: 'Before',
+    note: 'The API years.',
+    items: ['Feathers.js', 'Nuxt 2', 'Node', 'MongoDB']
+  },
+  {
+    label: 'Also',
+    note: 'jQuery for a long stretch. The rest as the work called for them.',
+    items: ['jQuery', 'React', 'Alpine.js', 'GSAP', 'Pug', 'Vue', 'Vuetify', 'TypeScript', 'Pinia', 'Tailwind', 'Vuex']
+  }
+] as const
+
 export const machinePaths = {
   llms: '/llms.txt',
   llmsFull: '/llms-full.txt',
   markdown: '/index.md',
+  experience: '/experience',
+  experienceMarkdown: '/experience.md',
   robots: '/robots.txt',
   sitemap: '/sitemap.xml',
   wellKnown: '/.well-known/llm-context'
