@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import data from '../../shared/contributions.json'
+import { contributionCounts } from '#shared/contributions'
 
 type Cell = {
   label: string
@@ -8,7 +8,7 @@ type Cell = {
 }
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-const counts = data.counts
+const counts = contributionCounts
 const seriesStart = Date.UTC(2012, 0, 1)
 const seriesEnd = Date.UTC(2026, 9, 13)
 
