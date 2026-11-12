@@ -35,6 +35,10 @@ const steps = study.steps
             <img
               src="https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?w=1600&q=80"
               alt="Ocean shoreline at sunset"
+              width="1600"
+              height="1067"
+              loading="lazy"
+              decoding="async"
             >
             <div class="hf-front-veil" aria-hidden="true" />
             <p class="hf-hand hf-front-script" aria-hidden="true">hellofrom</p>

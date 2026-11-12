@@ -18,6 +18,7 @@ import {
   proofHeading,
   rules,
   seo,
+  shareImages,
   siteUrl,
   stacks,
   stats,
@@ -253,21 +254,12 @@ LLM-Context: ${abs(machinePaths.llms)}
 `
 }
 
-export function sitemapXml() {
-  const lastmod = generatedOn()
-  const urls = [
-    { loc: `${siteUrl}/`, priority: '1.0' },
-    { loc: abs(machinePaths.experience), priority: '0.9' },
-    { loc: abs(machinePaths.llms), priority: '0.8' },
-    { loc: abs(machinePaths.llmsFull), priority: '0.6' },
-    { loc: abs(machinePaths.markdown), priority: '0.6' },
-    { loc: abs(machinePaths.experienceMarkdown), priority: '0.6' }
-  ]
+export function sitemapXml(updated: string) {
+  const urls = [`${siteUrl}/`, abs(machinePaths.experience)]
 
-  const body = urls.map(url => `  <url>
-    <loc>${url.loc}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <priority>${url.priority}</priority>
+  const body = urls.map(loc => `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${updated}</lastmod>
   </url>`).join('\n')
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -277,142 +269,242 @@ ${body}
 `
 }
 
-export function jsonLd() {
+export type JsonLdPage = 'home' | 'experience'
+
+const ids = {
+  website: `${siteUrl}/#website`,
+  person: `${siteUrl}/#eric`,
+  business: `${siteUrl}/#business`,
+  portrait: `${siteUrl}/#portrait`,
+  home: `${siteUrl}/#page`,
+  experience: `${siteUrl}/experience#page`,
+  experienceBreadcrumb: `${siteUrl}/experience#breadcrumb`,
+  schoolCheck: `${siteUrl}/#org-schoolcheck`,
+  campusSafe: `${siteUrl}/#org-campussafe`
+}
+
+const address = {
+  '@type': 'PostalAddress',
+  addressLocality: identity.locality,
+  addressRegion: identity.region,
+  addressCountry: identity.country
+}
+
+// Austin first; engagements are not limited to it.
+const areaServed = [
+  { '@type': 'City', name: 'Austin', containedInPlace: { '@type': 'State', name: 'Texas' } },
+  { '@type': 'Country', name: 'United States' }
+]
+
+const foundedOrgs: Record<string, string> = {
+  SchoolCheck: ids.schoolCheck,
+  CampusSafe: ids.campusSafe
+}
+
+function sharedNodes() {
   const hello = caseStudies.helloFrom
   const first = caseStudies.firstToSite
   const school = caseStudies.schoolCheck
-  const employers = experience.filter(role => role.org)
-  const currentEmployers = employers.filter(role => role.when.endsWith('now'))
-  const formerEmployers = employers.filter(role => !role.when.endsWith('now'))
 
+  return [
+    {
+      '@type': 'WebSite',
+      '@id': ids.website,
+      url: `${siteUrl}/`,
+      name: identity.name,
+      description: seo.description,
+      inLanguage: 'en',
+      publisher: { '@id': ids.person }
+    },
+    {
+      '@type': 'Person',
+      '@id': ids.person,
+      name: identity.name,
+      givenName: identity.givenName,
+      familyName: identity.familyName,
+      jobTitle: identity.jobTitle,
+      url: `${siteUrl}/`,
+      mainEntityOfPage: { '@id': ids.home },
+      image: { '@id': ids.portrait },
+      email: `mailto:${contactEmail}`,
+      description: `${about} ${lede}`,
+      address,
+      homeLocation: { '@type': 'Place', name: identity.location, address },
+      sameAs: [identity.linkedin, identity.github],
+      hasOccupation: {
+        '@type': 'Occupation',
+        name: identity.jobTitle,
+        description: 'Builds invisible AI into existing business operations: quotes, bookings, follow-ups, dispatch, and compliance rounds.',
+        occupationLocation: { '@type': 'City', name: identity.location },
+        skills: stacks.flatMap(group => group.items).join(', ')
+      },
+      knowsAbout: [
+        'Invisible AI',
+        'AI automation for business operations',
+        'Operations software',
+        'Embedding software in an existing business process',
+        'Quotes, bookings, and follow-ups',
+        'Permit classification',
+        'K-12 safety checks',
+        ...stacks.flatMap(group => group.items)
+      ],
+      worksFor: experience.map(role => ({
+        '@type': 'EmployeeRole',
+        roleName: role.title,
+        startDate: role.start,
+        ...(role.end ? { endDate: role.end } : {}),
+        ...(role.note ? { description: role.note } : {}),
+        worksFor: foundedOrgs[role.org]
+          ? { '@id': foundedOrgs[role.org] }
+          : { '@type': 'Organization', name: role.org }
+      })),
+      owns: { '@id': ids.business },
+      workExample: [
+        {
+          '@type': 'CreativeWork',
+          name: hello.name,
+          url: hello.url,
+          description: `${hello.summary} ${hello.helped}`
+        },
+        {
+          '@type': 'CreativeWork',
+          name: first.name,
+          url: first.url,
+          description: `${first.display} ${first.summary} ${first.helped}`
+        },
+        {
+          '@type': 'CreativeWork',
+          name: school.name,
+          url: school.url,
+          description: `${school.display} ${school.summary} ${school.helped}`
+        }
+      ]
+    },
+    {
+      '@type': 'Organization',
+      '@id': ids.schoolCheck,
+      name: school.name,
+      alternateName: 'DoorCheck',
+      url: school.url,
+      description: `${school.display} ${school.summary}`,
+      foundingDate: '2024-02',
+      founder: { '@id': ids.person }
+    },
+    {
+      '@type': 'Organization',
+      '@id': ids.campusSafe,
+      name: 'CampusSafe',
+      foundingDate: '2012',
+      dissolutionDate: '2015',
+      founder: { '@id': ids.person }
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': ids.business,
+      name: identity.name,
+      url: `${siteUrl}/`,
+      email: contactEmail,
+      image: { '@id': ids.portrait },
+      description: seo.description,
+      slogan: `${headline.before}${headline.emphasis}${headline.scribble}`,
+      founder: { '@id': ids.person },
+      address,
+      areaServed,
+      knowsAbout: ['AI automation', 'Operations software', 'Workflow automation'],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Ways to work with me',
+        itemListElement: offers.map(offer => ({
+          '@type': 'Offer',
+          itemOffered: { '@id': `${siteUrl}/#offer-${offer.n}` }
+        }))
+      }
+    },
+    {
+      '@type': 'ImageObject',
+      '@id': ids.portrait,
+      url: identity.portrait,
+      contentUrl: identity.portrait,
+      width: identity.portraitWidth,
+      height: identity.portraitHeight,
+      caption: `${identity.portraitCaption} ${identity.portraitAlt}`,
+      creator: { '@id': ids.person }
+    },
+    ...offers.map(offer => ({
+      '@type': 'Service',
+      '@id': `${siteUrl}/#offer-${offer.n}`,
+      name: offer.title,
+      serviceType: 'AI automation consulting',
+      description: `${offer.body} Good if you have: ${offer.good} Ends with: ${offer.ends}`,
+      url: `${siteUrl}/#offer`,
+      provider: { '@id': ids.business },
+      areaServed
+    }))
+  ]
+}
+
+function shareImage(page: JsonLdPage) {
+  const image = shareImages[page]
   return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
+    '@type': 'ImageObject',
+    url: image.url,
+    contentUrl: image.url,
+    width: shareImages.width,
+    height: shareImages.height,
+    caption: image.alt
+  }
+}
+
+export function jsonLd(page: JsonLdPage, updated: string) {
+  const pageNode = page === 'home'
+    ? {
         '@type': 'ProfilePage',
-        '@id': `${siteUrl}/#page`,
+        '@id': ids.home,
         url: `${siteUrl}/`,
         name: seo.title,
         description: seo.description,
         inLanguage: 'en',
-        isPartOf: { '@id': `${siteUrl}/#website` },
-        about: { '@id': `${siteUrl}/#eric` },
-        mainEntity: { '@id': `${siteUrl}/#eric` },
-        primaryImageOfPage: { '@id': `${siteUrl}/#portrait` }
-      },
-      {
-        '@type': 'WebSite',
-        '@id': `${siteUrl}/#website`,
-        url: `${siteUrl}/`,
-        name: identity.name,
-        description: seo.description,
-        inLanguage: 'en',
-        publisher: { '@id': `${siteUrl}/#eric` }
-      },
-      {
-        '@type': 'Person',
-        '@id': `${siteUrl}/#eric`,
-        name: identity.name,
-        givenName: identity.givenName,
-        familyName: identity.familyName,
-        url: `${siteUrl}/`,
-        image: { '@id': `${siteUrl}/#portrait` },
-        email: contactEmail,
-        description: `${about} ${lede}`,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: identity.locality,
-          addressRegion: identity.region,
-          addressCountry: identity.country
-        },
-        homeLocation: {
-          '@type': 'Place',
-          name: identity.location,
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: identity.locality,
-            addressRegion: identity.region,
-            addressCountry: identity.country
-          }
-        },
-        sameAs: [identity.linkedin, identity.github],
-        knowsAbout: [
-          'Invisible AI',
-          'Operations software',
-          'Embedding software in an existing business process',
-          'Quotes, bookings, and follow-ups',
-          'Permit classification',
-          'K-12 safety checks',
-          ...stacks.flatMap(group => group.items)
-        ],
-        ...(currentEmployers.length
-          ? {
-              worksFor: currentEmployers.map(role => ({
-                '@type': 'Organization',
-                name: role.org
-              }))
-            }
-          : {}),
-        ...(formerEmployers.length
-          ? {
-              alumniOf: formerEmployers.map(role => ({
-                '@type': 'Organization',
-                name: role.org
-              }))
-            }
-          : {}),
-        workExample: [
-          {
-            '@type': 'CreativeWork',
-            name: hello.name,
-            url: hello.url,
-            description: `${hello.summary} ${hello.helped}`
-          },
-          {
-            '@type': 'CreativeWork',
-            name: first.name,
-            url: first.url,
-            description: `${first.display} ${first.summary} ${first.helped}`
-          },
-          {
-            '@type': 'CreativeWork',
-            name: school.name,
-            url: school.url,
-            description: `${school.display} ${school.summary} ${school.helped}`
-          }
-        ]
-      },
-      {
+        dateModified: updated,
+        isPartOf: { '@id': ids.website },
+        about: { '@id': ids.person },
+        mainEntity: { '@id': ids.person },
+        primaryImageOfPage: { '@id': ids.portrait },
+        image: shareImage('home'),
+        significantLink: [abs(machinePaths.experience), abs(machinePaths.llms)]
+      }
+    : {
         '@type': 'WebPage',
-        '@id': `${siteUrl}/experience#page`,
-        url: `${siteUrl}/experience`,
+        '@id': ids.experience,
+        url: abs(machinePaths.experience),
         name: experienceSeo.title,
         description: experienceSeo.description,
         inLanguage: 'en',
-        isPartOf: { '@id': `${siteUrl}/#website` },
-        about: { '@id': `${siteUrl}/#eric` },
+        dateModified: updated,
+        isPartOf: { '@id': ids.website },
+        about: { '@id': ids.person },
+        breadcrumb: { '@id': ids.experienceBreadcrumb },
+        image: shareImage('experience'),
         mentions: companies.map(company => ({
           '@type': 'Organization',
           name: company.name,
           ...(company.url ? { url: company.url } : {}),
           ...(company.note ? { description: company.note } : {})
         }))
-      },
-      {
-        '@type': 'ImageObject',
-        '@id': `${siteUrl}/#portrait`,
-        url: identity.portrait,
-        contentUrl: identity.portrait,
-        caption: `${identity.portraitCaption} ${identity.portraitAlt}`
-      },
-      ...offers.map(offer => ({
-        '@type': 'Service',
-        '@id': `${siteUrl}/#offer-${offer.n}`,
-        name: offer.title,
-        description: `${offer.body} Good if you have: ${offer.good} Ends with: ${offer.ends}`,
-        url: `${siteUrl}/#offer`,
-        provider: { '@id': `${siteUrl}/#eric` }
-      }))
-    ]
+      }
+
+  const extra = page === 'experience'
+    ? [{
+        '@type': 'BreadcrumbList',
+        '@id': ids.experienceBreadcrumb,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: identity.name, item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: experienceIntro.eyebrow, item: abs(machinePaths.experience) }
+        ]
+      }]
+    : []
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [pageNode, ...extra, ...sharedNodes()]
   }
 }

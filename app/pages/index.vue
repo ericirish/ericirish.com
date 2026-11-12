@@ -24,7 +24,8 @@ useSeoMeta({
   ogTitle: seo.ogTitle,
   ogDescription: seo.ogDescription,
   ogUrl: `${siteUrl}/`,
-  ogImage: identity.portrait
+  twitterTitle: seo.ogTitle,
+  twitterDescription: seo.ogDescription
 })
 </script>
 

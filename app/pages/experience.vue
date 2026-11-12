@@ -4,7 +4,6 @@ import {
   experience,
   experienceIntro,
   experienceSeo,
-  identity,
   siteUrl,
   stacks
 } from '#shared/site'
@@ -15,7 +14,8 @@ useSeoMeta({
   ogTitle: experienceSeo.ogTitle,
   ogDescription: experienceSeo.ogDescription,
   ogUrl: `${siteUrl}/experience`,
-  ogImage: identity.portrait
+  twitterTitle: experienceSeo.ogTitle,
+  twitterDescription: experienceSeo.ogDescription
 })
 </script>
 

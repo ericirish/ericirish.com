@@ -1,5 +1,6 @@
 import { sitemapXml } from '#shared/agent-profile'
 
 export default defineEventHandler((event) => {
-  return sendDocument(event, sitemapXml(), 'application/xml; charset=utf-8')
+  const updated = String(useRuntimeConfig(event).public.siteUpdated)
+  return sendDocument(event, sitemapXml(updated), 'application/xml; charset=utf-8')
 })

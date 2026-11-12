@@ -13,11 +13,22 @@ export const identity = {
   github: 'https://github.com/ericirish',
   portrait: `${siteUrl}/EricIrish.jpg`,
   portraitAlt: 'Eric Irish in a cowboy hat, suede jacket, and a Texas belt buckle',
-  portraitCaption: 'That’s me. Not an AI photo.'
+  portraitCaption: 'That’s me. Not an AI photo.',
+  portraitWidth: 1201,
+  portraitHeight: 1800,
+  jobTitle: 'Principal Solutions Architect'
+} as const
+
+export const shareImages = {
+  home: { url: `${siteUrl}/og-image.jpg`, alt: 'Eric Irish — Yes, AI can do real work in your business. I’m the guy who actually builds it.' },
+  experience: { url: `${siteUrl}/og-experience.jpg`, alt: 'Eric Irish — The work, the companies, and the stack.' },
+  width: 1200,
+  height: 630,
+  type: 'image/jpeg'
 } as const
 
 export const seo = {
-  title: 'Eric Irish — Yes, AI can do real work in your business. I’m the guy who actually builds it.',
+  title: 'Eric Irish — Invisible AI built into your business · Austin',
   description:
     'I embed with how your business already runs and build invisible AI — the right information in front of the right person, no prompt. Seventeen years in startups and ops software. Plain talk on where it helps and where it doesn’t.',
   ogTitle: 'Yes, AI can do real work in your business. I’m the guy who actually builds it.',
@@ -222,36 +233,48 @@ export const experience = [
     when: 'Apr 2024 — now',
     title: 'Principal Solutions Architect',
     org: 'Frank & Victor',
+    start: '2024-04',
+    end: null,
     note: ''
   },
   {
     when: 'Feb 2024 — now',
     title: 'Founder',
     org: 'SchoolCheck',
+    start: '2024-02',
+    end: null,
     note: 'Formerly DoorCheck.'
   },
   {
     when: 'Feb 2020 — now',
     title: 'Principal Solutions Architect',
     org: 'Kale Ventures',
+    start: '2020-02',
+    end: null,
     note: ''
   },
   {
     when: 'Feb 2019 — Oct 2024',
     title: 'Solutions Architect',
     org: 'Kordami',
+    start: '2019-02',
+    end: '2024-10',
     note: ''
   },
   {
     when: '2016 — 2019',
     title: 'Solutions Architect',
     org: 'Springbox',
+    start: '2016',
+    end: '2019',
     note: 'A Prophet company. Same job, more meetings.'
   },
   {
     when: '2012 — 2015',
     title: 'Founder',
     org: 'CampusSafe',
+    start: '2012',
+    end: '2015',
     note: 'I built it.'
   }
 ] as const

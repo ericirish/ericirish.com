@@ -38,6 +38,10 @@ const steps = study.steps
             <img
               src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
               alt="School building exterior"
+              width="1600"
+              height="1067"
+              loading="lazy"
+              decoding="async"
             >
             <p class="sc-card-photo-label">Campus · checks today</p>
           </div>

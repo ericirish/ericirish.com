@@ -1,25 +1,26 @@
 <script setup lang="ts">
 import { jsonLd } from '#shared/agent-profile'
-import { identity, machinePaths, siteUrl } from '#shared/site'
+import { identity, machinePaths, shareImages, siteUrl } from '#shared/site'
 
 const route = useRoute()
+const siteUpdated = String(useRuntimeConfig().public.siteUpdated)
 
 const pageUrl = computed(() => {
   const path = route.path.replace(/\/$/, '') || '/'
   return path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`
 })
 
+const page = computed(() =>
+  route.path.replace(/\/$/, '') === machinePaths.experience ? 'experience' : 'home'
+)
+
 const markdownPath = computed(() =>
-  route.path.replace(/\/$/, '') === machinePaths.experience
-    ? machinePaths.experienceMarkdown
-    : machinePaths.markdown
+  page.value === 'experience' ? machinePaths.experienceMarkdown : machinePaths.markdown
 )
 
 useHead(() => ({
   link: [
-    { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
     { rel: 'canonical', href: pageUrl.value, key: 'canonical' },
-    { rel: 'alternate', href: pageUrl.value, hreflang: 'en', key: 'hreflang' },
     { rel: 'llm-context', href: machinePaths.llms, type: 'text/markdown' },
     { rel: 'describedby', href: machinePaths.llms, type: 'text/markdown' },
     { rel: 'alternate', href: markdownPath.value, type: 'text/markdown', title: 'Markdown version', key: 'markdown' }
@@ -27,7 +28,8 @@ useHead(() => ({
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: JSON.stringify(jsonLd())
+      key: 'jsonld',
+      innerHTML: JSON.stringify(jsonLd(page.value, siteUpdated))
     }
   ],
   noscript: [
@@ -40,11 +42,14 @@ useSeoMeta({
   ogType: 'website',
   ogLocale: 'en_US',
   ogUrl: pageUrl,
-  ogImage: identity.portrait,
-  ogImageAlt: identity.portraitAlt,
+  ogImage: () => shareImages[page.value].url,
+  ogImageAlt: () => shareImages[page.value].alt,
+  ogImageWidth: shareImages.width,
+  ogImageHeight: shareImages.height,
+  ogImageType: shareImages.type,
   twitterCard: 'summary_large_image',
-  twitterImage: identity.portrait,
-  twitterImageAlt: identity.portraitAlt,
+  twitterImage: () => shareImages[page.value].url,
+  twitterImageAlt: () => shareImages[page.value].alt,
   author: identity.name,
   robots: 'index, follow, max-image-preview:large, max-snippet:-1'
 })

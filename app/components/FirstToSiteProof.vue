@@ -34,6 +34,10 @@ const steps = study.steps
             <img
               src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
               alt="Crew on a jobsite in hard hats"
+              width="1600"
+              height="1067"
+              loading="lazy"
+              decoding="async"
             >
             <p class="fts-card-photo-label">Austin · last 14 days</p>
           </div>
