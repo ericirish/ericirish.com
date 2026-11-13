@@ -66,7 +66,7 @@ const contactMailto = `mailto:${email}`
               <li><a href="/#testimonials" class="link">Proof on this site</a></li>
               <li><a href="https://hellofrom.to" target="_blank" rel="noreferrer" class="link">HelloFrom</a></li>
               <li><a href="https://austin.firsttosite.com" target="_blank" rel="noreferrer" class="link">FirstToSite · Austin</a></li>
-              <li><a href="https://schoolcheck.app" target="_blank" rel="noreferrer" class="link">SchoolCheck</a></li>
+              <li><a href="https://www.schoolcheck.app" target="_blank" rel="noreferrer" class="link">SchoolCheck</a></li>
             </ul>
           </div>
         </div>

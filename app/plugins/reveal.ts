@@ -1,7 +1,9 @@
 /**
  * v-reveal — fades an element in once it scrolls into view.
- * Elements carry the `reveal` class in markup so SSR paints them hidden
- * and the directive only flips them visible; <noscript> in app.vue undoes it.
+ * Adds `reveal` on mount and `is-visible` once in view. Browsers with
+ * scroll-driven animations fade the element itself in CSS (main.css, `reveal-in`);
+ * elsewhere the `is-visible` transition is the fallback. Either way `is-visible`
+ * triggers the one-shot child effects in motion.css.
  */
 export default defineNuxtPlugin((nuxtApp) => {
   let observer: IntersectionObserver | null = null

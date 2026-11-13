@@ -193,7 +193,7 @@ export const caseStudies = {
   },
   schoolCheck: {
     name: 'SchoolCheck',
-    url: 'https://schoolcheck.app',
+    url: 'https://www.schoolcheck.app',
     kicker: 'Case study · SchoolCheck',
     display: 'Checks-first for K-12. Know the round happened.',
     summary:
@@ -206,7 +206,7 @@ export const caseStudies = {
       { n: '03', title: 'Record sticks', body: 'Open finding, notifications, audit trail — every asset type, same platform.' }
     ],
     then: { title: 'Staff fix it.', body: 'That part stays human. On purpose.' },
-    linkLabel: 'schoolcheck.app',
+    linkLabel: 'www.schoolcheck.app',
     footnote: 'One tap on the check. Tags on the finding. Proof for the district.'
   }
 } as const
