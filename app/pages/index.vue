@@ -120,7 +120,7 @@ useSeoMeta({
     </section>
 
     <!-- Thesis -->
-    <section id="thesis" class="border-b border-line scroll-mt-20">
+    <section id="thesis" tabindex="-1" class="border-b border-line scroll-mt-20">
       <div class="frame px-6 py-20 md:px-10 md:py-28">
         <p v-reveal class="eyebrow mb-8">02 — The thesis</p>
         <h2 v-reveal class="display max-w-[16ch] text-4xl md:text-6xl">
@@ -160,7 +160,7 @@ useSeoMeta({
     </section>
 
     <!-- Offers -->
-    <section id="offer" class="border-b border-line scroll-mt-20">
+    <section id="offer" tabindex="-1" class="border-b border-line scroll-mt-20">
       <div class="frame">
         <div v-reveal class="flex items-baseline justify-between gap-6 px-6 pb-10 pt-20 md:px-10 md:pt-28">
           <p class="eyebrow">03 — Ways to work with me</p>
@@ -195,7 +195,7 @@ useSeoMeta({
     </section>
 
     <!-- About -->
-    <section id="about" class="border-b border-line scroll-mt-20">
+    <section id="about" tabindex="-1" class="border-b border-line scroll-mt-20">
       <div class="frame grid gap-14 px-6 py-20 md:grid-cols-12 md:px-10 md:py-28">
         <div v-reveal class="md:col-span-7">
           <p class="eyebrow mb-8">04 — Who’s this guy</p>

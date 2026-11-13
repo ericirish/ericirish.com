@@ -5,6 +5,7 @@ import { caseStudies } from '#shared/site'
 const study = caseStudies.schoolCheck
 const site = study.url
 const steps = study.steps
+const scPhoto = unsplashImage('photo-1562774053-701939374585')
 </script>
 
 <template>
@@ -36,7 +37,9 @@ const steps = study.steps
         <figure v-reveal>
           <div class="sc-card sc-card-photo">
             <img
-              src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
+              :src="scPhoto.src"
+              :srcset="scPhoto.srcset"
+              :sizes="caseCardSizes"
               alt="School building exterior"
               width="1600"
               height="1067"

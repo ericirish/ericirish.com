@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  caseStudies,
   companies,
   experience,
   experienceIntro,
@@ -17,6 +18,11 @@ useSeoMeta({
   twitterTitle: experienceSeo.ogTitle,
   twitterDescription: experienceSeo.ogDescription
 })
+
+// Orgs on the role list that have their own site.
+const orgLinks: Record<string, string> = {
+  [caseStudies.schoolCheck.name]: caseStudies.schoolCheck.url
+}
 </script>
 
 <template>
@@ -44,7 +50,10 @@ useSeoMeta({
             <p class="font-mono text-xs text-ink-faint md:col-span-3">{{ role.when }}</p>
             <div class="md:col-span-9">
               <h2 class="display text-3xl md:text-4xl">{{ role.title }}</h2>
-              <p v-if="role.org" class="mt-2 text-ink">{{ role.org }}</p>
+              <p v-if="role.org" class="mt-2 text-ink">
+                <a v-if="orgLinks[role.org]" :href="orgLinks[role.org]" target="_blank" rel="noreferrer" class="link">{{ role.org }}</a>
+                <template v-else>{{ role.org }}</template>
+              </p>
               <p v-if="role.note" class="mt-3 max-w-xl leading-relaxed text-ink-muted">{{ role.note }}</p>
             </div>
           </li>

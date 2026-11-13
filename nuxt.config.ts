@@ -21,6 +21,10 @@ const link = [
 export default defineNuxtConfig({
   compatibilityDate: '2026-09-15',
   modules: ['@nuxt/ui', '@nuxt/fonts'],
+  experimental: {
+    // Cross-fade between / and /experience; the plugin skips it under prefers-reduced-motion.
+    viewTransition: true
+  },
   css: ['~/assets/css/main.css', '~/assets/css/motion.css'],
   colorMode: {
     preference: 'system',
@@ -30,14 +34,14 @@ export default defineNuxtConfig({
   },
   fonts: {
     families: [
-      { name: 'Newsreader', provider: 'google', weights: [400, 500, 600], styles: ['normal', 'italic'] },
-      { name: 'Figtree', provider: 'google', weights: [400, 500, 600] },
+      { name: 'Newsreader', provider: 'google', weights: [400], styles: ['normal', 'italic'] },
+      { name: 'Figtree', provider: 'google', weights: [400, 500, 600, 700] },
       { name: 'Geist Mono', provider: 'google', weights: [400, 500] },
       { name: 'Fraunces', provider: 'google', weights: [500, 600] },
       { name: 'Manrope', provider: 'google', weights: [500, 600, 700] },
       { name: 'Homemade Apple', provider: 'google', weights: [400] },
       { name: 'Caveat', provider: 'google', weights: [400, 600] },
-      { name: 'DM Sans', provider: 'google', weights: [400, 500, 600, 700] }
+      { name: 'DM Sans', provider: 'google', weights: [500, 600, 700] }
     ]
   },
   runtimeConfig: {
@@ -63,7 +67,7 @@ export default defineNuxtConfig({
       script: [
         {
           key: 'gtm',
-          innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`
+          innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.fetchPriority='low';j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`
         }
       ],
       noscript: [

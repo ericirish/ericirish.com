@@ -4,6 +4,7 @@ import { caseStudies } from '#shared/site'
 const study = caseStudies.helloFrom
 const site = study.url
 const steps = study.steps
+const hfPhoto = unsplashImage('photo-1414609245224-afa02bfb3fda')
 </script>
 
 <template>
@@ -33,7 +34,9 @@ const steps = study.steps
         <figure v-reveal>
           <div class="hf-card hf-card-front">
             <img
-              src="https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?w=1600&q=80"
+              :src="hfPhoto.src"
+              :srcset="hfPhoto.srcset"
+              :sizes="caseCardSizes"
               alt="Ocean shoreline at sunset"
               width="1600"
               height="1067"

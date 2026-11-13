@@ -61,6 +61,8 @@ html {
   background-color: var(--color-void);
   color-scheme: light;
   scroll-behavior: smooth;
+  /* Keep focused elements and fragment targets clear of the sticky header. */
+  scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -251,6 +253,45 @@ body {
 
 .link-muted:hover {
   color: var(--color-ink);
+}
+
+/* Programmatic focus targets (in-page sections, the <h1> after a route change). */
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Header scrollspy (`.is-current`, set in layouts/default.vue) and the current page link. */
+.nav-link {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4em;
+  transition: color 200ms, text-decoration-color 200ms;
+}
+
+.nav-link:is(.is-current, [aria-current="page"]) {
+  color: var(--color-ink);
+  text-decoration-color: var(--color-accent);
+}
+
+/* Sticky header: stays as-is where scroll-state queries aren't supported. Where they
+   are, the bottom rule and shadow only appear once the header is actually stuck. */
+@supports (container-type: scroll-state) {
+  .site-header {
+    container: site-header / scroll-state;
+  }
+
+  .header-shell {
+    border-bottom-color: transparent;
+    transition: border-color 250ms, box-shadow 250ms;
+  }
+
+  @container site-header scroll-state(stuck: top) {
+    .header-shell {
+      border-bottom-color: var(--color-line);
+      box-shadow: 0 6px 20px -12px rgb(0 0 0 / 0.35);
+    }
+  }
 }
 
 /* Buttons */

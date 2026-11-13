@@ -4,6 +4,7 @@ import { caseStudies } from '#shared/site'
 const study = caseStudies.firstToSite
 const site = study.url
 const steps = study.steps
+const ftsPhoto = unsplashImage('photo-1541888946425-d81bb19240f5')
 </script>
 
 <template>
@@ -32,7 +33,9 @@ const steps = study.steps
         <figure v-reveal>
           <div class="fts-card fts-card-photo">
             <img
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80"
+              :src="ftsPhoto.src"
+              :srcset="ftsPhoto.srcset"
+              :sizes="caseCardSizes"
               alt="Crew on a jobsite in hard hats"
               width="1600"
               height="1067"

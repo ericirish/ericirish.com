@@ -6,33 +6,90 @@ const email = String(config.public.contactEmail)
 const year = new Date().getFullYear()
 
 const contactMailto = `mailto:${email}`
+
+// Scrollspy for the in-page header links: `.is-current` + aria-current while a
+// section crosses the middle of the viewport. Not CSS `scroll-target-group`:
+// it treats the first link as current whenever no section has been reached yet,
+// which would light up "Work with me" over the hero.
+const route = useRoute()
+let stopSpy: (() => void) | undefined
+
+function startSpy() {
+  stopSpy?.()
+  stopSpy = undefined
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.site-nav a[href^="/#"]')]
+  const setCurrent = (current: Element | null) => {
+    for (const link of links) {
+      const active = link === current
+      link.classList.toggle('is-current', active)
+      if (active) {
+        link.setAttribute('aria-current', 'true')
+      } else {
+        link.removeAttribute('aria-current')
+      }
+    }
+  }
+  if (route.path !== '/') {
+    setCurrent(null)
+    return
+  }
+
+  const byId = new Map(links.map(link => [link.hash.slice(1), link]))
+  const sections = [...byId.keys()]
+    .map(id => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null)
+  const visible = new Set<Element>()
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        visible.add(entry.target)
+      } else {
+        visible.delete(entry.target)
+      }
+    }
+    const current = sections.find(section => visible.has(section))
+    setCurrent(current ? byId.get(current.id) ?? null : null)
+  }, { rootMargin: '-50% 0px -50% 0px' })
+  sections.forEach(section => observer.observe(section))
+  stopSpy = () => observer.disconnect()
+}
+
+const nuxtApp = useNuxtApp()
+const offPageFinish = nuxtApp.hook('page:finish', () => startSpy())
+onMounted(startSpy)
+onBeforeUnmount(() => {
+  offPageFinish()
+  stopSpy?.()
+})
 </script>
 
 <template>
   <div class="min-h-dvh text-ink">
-    <header class="sticky top-0 z-40 border-b border-line bg-void/92 backdrop-blur-md">
-      <div class="scroll-progress" aria-hidden="true" />
-      <div class="frame flex items-center justify-between px-6 py-4 md:px-10">
-        <NuxtLink to="/" class="logo inline-flex items-center font-display text-[1.35rem] tracking-tight">
-          <span class="star logo-star" aria-hidden="true" />
-          {{ identity.name }}
-        </NuxtLink>
+    <header class="site-header sticky top-0 z-40">
+      <div class="header-shell relative border-b border-line bg-void/92 backdrop-blur-md">
+        <div class="scroll-progress" aria-hidden="true" />
+        <div class="frame flex items-center justify-between px-6 py-4 md:px-10">
+          <NuxtLink to="/" class="logo inline-flex items-center font-display text-[1.35rem] tracking-tight">
+            <span class="star logo-star" aria-hidden="true" />
+            {{ identity.name }}
+          </NuxtLink>
 
-        <p class="eyebrow hidden items-center gap-2 md:flex">
-          {{ headerLine }}
-          <span class="star" aria-hidden="true" />
-          Austin, TX
-        </p>
+          <p class="eyebrow hidden items-center gap-2 md:flex">
+            {{ headerLine }}
+            <span class="star" aria-hidden="true" />
+            Austin, TX
+          </p>
 
-        <nav class="flex items-center gap-6 font-mono text-[0.75rem] tracking-wide">
-          <a href="/#offer" class="link-muted hidden transition-colors sm:inline">Work with me</a>
-          <NuxtLink to="/experience" class="link-muted hidden transition-colors sm:inline">Experience</NuxtLink>
-          <a href="/#about" class="link-muted hidden transition-colors sm:inline">About</a>
-          <a :href="contactMailto" class="inline-flex items-center gap-2 text-ink">
-            <span class="pulse-dot inline-block size-1.5 rounded-full bg-accent" aria-hidden="true" />
-            Contact
-          </a>
-        </nav>
+          <nav class="site-nav flex items-center gap-6 font-mono text-[0.75rem] tracking-wide">
+            <a href="/#offer" class="nav-link link-muted hidden transition-colors sm:inline">Work with me</a>
+            <NuxtLink to="/experience" class="nav-link link-muted hidden transition-colors sm:inline">Experience</NuxtLink>
+            <a href="/#about" class="nav-link link-muted hidden transition-colors sm:inline">About</a>
+            <a :href="contactMailto" class="inline-flex items-center gap-2 text-ink">
+              <span class="pulse-dot inline-block size-1.5 rounded-full bg-accent" aria-hidden="true" />
+              Contact
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
 
